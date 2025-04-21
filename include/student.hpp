@@ -13,17 +13,18 @@ class Meal;
 // Student class definition
 class Student {
 private:
+    static int next_id;
     int user_id;
     std::string student_id;
     std::string name;
     std::string email;
-    float balance;
-    bool is_active;
+    float balance = 0;
+    bool is_active = false;
     std::vector<Reservation> reservations;
  
 public:
     // Constructor
-    explicit Student(int user_id, const std::string& student_id, const std::string& name, const std::string& email, float balance, bool is_active);
+    explicit Student(int user_id, const std::string& student_id, const std::string& name, const std::string& email);
 
     // Getters
     int get_user_id() const;
