@@ -3,8 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "reservation.h"
-#include "meal.h"
+#include "reservation.hpp"
+#include "meal.hpp"
 
 // Forward declaration
 class Reservation;
@@ -23,7 +23,7 @@ private:
  
 public:
     // Constructor
-    Student(int user_id, const std::string& student_id, const std::string& name, const std::string& email, float balance, bool is_active);
+    explicit Student(int user_id, const std::string& student_id, const std::string& name, const std::string& email, float balance, bool is_active);
 
     // Getters
     int get_user_id() const;
