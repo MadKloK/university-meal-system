@@ -1,4 +1,5 @@
-#include "../include/student.hpp"
+#include "student.hpp"
+
 #include <iostream>
 #include <cassert>
 

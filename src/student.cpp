@@ -1,4 +1,4 @@
-#include "../include/student.hpp"
+#include "student.hpp"
 #include <iostream>
 
 int Student::next_id = 1001;

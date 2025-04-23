@@ -1,4 +1,4 @@
-#include "../include/reservation.hpp"
+#include "reservation.hpp"
 #include <iostream>
 
 // Initialize static member
