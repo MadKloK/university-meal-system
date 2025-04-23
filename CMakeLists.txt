@@ -5,12 +5,13 @@ project(university-meal-system LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_BUILD_TYPE Debug)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Core library (all class implementations)
+# Core library
 add_library(meal_lib
     src/student.cpp
     src/reservation.cpp
@@ -23,7 +24,7 @@ target_include_directories(meal_lib PUBLIC include)
 add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE meal_lib)
 
-# Testing (optional)
+# Testing
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests AND NOT CMAKE_CONFIGURATION_TYPES)
     enable_testing()
     

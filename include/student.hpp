@@ -24,7 +24,10 @@ private:
  
 public:
     // Constructor
-    explicit Student(int user_id, const std::string& student_id, const std::string& name, const std::string& email);
+    explicit Student(const std::string& student_id, const std::string& name, const std::string& email);
+
+    // Friends
+    friend std::ostream& operator<<(std::ostream& os, const Student& st);
 
     // Getters
     int get_user_id() const;
@@ -47,6 +50,9 @@ public:
     void print() const;
     void reserve_meal(const Meal& meal);
     bool cancel_reservation(const Reservation& reservation);
+
+    // Destructor
+    ~Student();
 };
 
 #endif // STUDENT_H
