@@ -1,6 +1,7 @@
 #include "student.hpp"
 #include <iostream>
 
+// Static initialization
 int Student::next_id = 1001;
 
 // Constructor ans Destructor
@@ -105,7 +106,7 @@ void reserve_meal(const Meal& meal) {
     // TODO: will be completed after meal and reservation
 }
 
-bool Student::cancel_reservation(const Reservation& reservation) {
+void Student::cancel_reservation(const Reservation& reservation) {
     // TODO: also this one
 }
 

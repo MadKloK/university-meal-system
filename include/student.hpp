@@ -1,14 +1,12 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include <string>
-#include <vector>
 #include "reservation.hpp"
 #include "meal.hpp"
 
-// Forward declaration
-class Reservation;
-class Meal;
+#include <string>
+#include <vector>
+
 
 // Student class definition
 class Student {
@@ -29,6 +27,14 @@ public:
     // Friends
     friend std::ostream& operator<<(std::ostream& os, const Student& st);
 
+    // Setters
+    void set_user_id(int user_id);
+    void set_student_id(const std::string& student_id);
+    void set_name(const std::string& name);
+    void set_email(const std::string& email);
+    void set_balance(float balance);
+    void set_is_active(bool is_active);
+
     // Getters
     int get_user_id() const;
     std::string get_student_id() const;
@@ -38,21 +44,10 @@ public:
     bool get_is_active() const;
     std::vector<Reservation> get_reservations() const;
 
-    // Setters
-    void set_user_id(int user_id);
-    void set_student_id(const std::string& student_id);
-    void set_name(const std::string& name);
-    void set_email(const std::string& email);
-    void set_balance(float balance);
-    void set_is_active(bool is_active);
-
     // Methods
     void print() const;
     void reserve_meal(const Meal& meal);
-    bool cancel_reservation(const Reservation& reservation);
-
-    // Destructor
-    ~Student();
+    void cancel_reservation(const Reservation& reservation);
 };
 
 #endif // STUDENT_H
