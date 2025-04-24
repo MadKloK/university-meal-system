@@ -46,8 +46,8 @@ public:
 
     // Methods
     void print() const;
-    void reserve_meal(const Meal& meal);
-    void cancel_reservation(const Reservation& reservation);
+    void reserve_meal(const Reservation& reservation);
+    bool cancel_reservation(int reservation_id); // retuns true when canceling was successful
 };
 
 #endif // STUDENT_H

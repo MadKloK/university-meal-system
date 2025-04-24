@@ -56,7 +56,7 @@ std::vector<Reservation> Student::get_reservations() const {
     return this->reservations;
 }
 
-// Setters
+// Setter
 void Student::set_user_id(int user_id) {
     if (user_id < 1000) {
         throw std::invalid_argument("User ID must be over 999");
@@ -102,12 +102,25 @@ void Student::print() const {
               << "ID: " << this->student_id << std::endl;
 }
 
-void reserve_meal(const Meal& meal) {
-    // TODO: will be completed after meal and reservation
+void Student::reserve_meal(const Reservation& reservation) {
+    for (const auto& res : this->reservations) {
+        if (res.get_meal().get_meal_type() == reservation.get_meal().get_meal_type()) {
+            throw std::invalid_argument("This meal is already reserved");
+        }
+    }
+    this->reservations.push_back(reservation);
 }
 
-void Student::cancel_reservation(const Reservation& reservation) {
-    // TODO: also this one
+bool Student::cancel_reservation(int reservation_id) {
+    for (auto it = this->reservations.begin(); it != this->reservations.end(); ) {
+        if (it->get_reservation_id() == reservation_id) {
+            it = this->reservations.erase(it);
+            return true;
+        } else {
+            it++;
+        }
+    }
+    return false;
 }
 
 std::ostream& operator<<(std::ostream& os, const Student& st) {

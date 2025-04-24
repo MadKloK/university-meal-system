@@ -9,7 +9,7 @@ Reservation::Reservation(Student student, DiningHall dining_hall, Meal meal)
     : student(student), dining_hall(dining_hall), meal(meal) {
     this->reservation_id = next_reserve_id++;
     this->created_at = time(0);
-    this->status = ReservationStatus::PENDING;
+    this->status = ReservationStatus::CONFIRMED;
 }
 
 // Setters
@@ -72,10 +72,16 @@ bool Reservation::cancel() {
 }
 
 void Reservation::print() {
-    //  TODO: will be implemented after meal. logical to have a name on print yk.
+    std::cout << "Meal: " << this->meal.get_name() << " - " << static_cast<int>(this->meal.get_meal_type()) << std::endl
+            << "Dining Hall: " << this->dining_hall.get_name() << std::endl
+            << "Create at " << this->created_at << std::endl
+            << "Status: " << static_cast<int>(this->status) << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Reservation& reservation) {
-    // TODO: same here
+    os << "Meal: " << reservation.meal.get_name() << " - " << static_cast<int>(reservation.meal.get_meal_type()) << std::endl
+    << "Dining Hall: " << reservation.dining_hall.get_name() << std::endl
+    << "Create at " << reservation.created_at << std::endl
+    << "Status: " << static_cast<int>(reservation.status) << std::endl;
     return os;
 }
