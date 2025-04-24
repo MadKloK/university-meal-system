@@ -3,7 +3,7 @@
 [![CMake](https://img.shields.io/badge/CMake-3.10+-blue.svg)](https://cmake.org)
 [![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 
-A C++ system for managing student meal reservations in university dining halls.
+A cpp meal reserving system as trash as the current (with improvemnts).
 
 ## Features
 
@@ -11,6 +11,7 @@ A C++ system for managing student meal reservations in university dining halls.
 - Meal reservation/cancellation
 - Dining hall capacity tracking
 - Balance and meal credit system
+- nothing more
 
 ## Prerequisites
 
