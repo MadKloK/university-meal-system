@@ -1,6 +1,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
+#include "user.hpp"
 #include "reservation.hpp"
 #include "meal.hpp"
 
@@ -9,13 +10,14 @@
 
 
 // Student class definition
-class Student {
+class Student : public User {
 private:
     static int next_id;
     int user_id;
     std::string student_id;
     std::string name;
     std::string email;
+    std::string phone;
     float balance = 0;
     bool is_active = false;
     std::vector<Reservation> reservations;

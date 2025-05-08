@@ -18,6 +18,14 @@ enum class MealSideItem {
     ITEM4
 };
 
+enum class ReserveDay {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY
+};
+
 // Meal Class
 class Meal {
 private:
@@ -26,11 +34,13 @@ private:
     std::string name;
     float price;
     MealType meal_type;
+    ReserveDay reserve_day;
     std::vector<MealSideItem> side_items;
+    bool is_active;
 
 public:
     // Constructor
-    explicit Meal(std::string name, float price, MealType meal_type);
+    explicit Meal(std::string name, float price, MealType meal_type, ReserveDay reserve_day, bool is_active = true);
 
     // Setters
     void set_name(const std::string& name);
@@ -43,6 +53,8 @@ public:
     float get_price() const;
     MealType get_meal_type() const;
     const std::vector<MealSideItem>& get_side_items() const;
+    bool get_is_active() const { return is_active; }
+    void set_is_active(bool is_active) { this->is_active = is_active; }
     
     // Methods
     void print();

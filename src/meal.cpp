@@ -6,8 +6,8 @@
 int Meal::next_meal_id = 101;
 
 // Constructor
-Meal::Meal(std::string name, float price, MealType meal_type)
-    : name(name), price(price), meal_type(meal_type)
+Meal::Meal(std::string name, float price, MealType meal_type, ReserveDay reserve_day, bool is_active = true)
+    : name(name), price(price), meal_type(meal_type), reserve_day(reserve_day), is_active(is_active)
 {
     this->meal_id = this->next_meal_id++;
 
