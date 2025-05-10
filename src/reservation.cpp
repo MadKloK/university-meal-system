@@ -1,11 +1,12 @@
 #include "reservation.hpp"
+#include "student.hpp"
 #include <iostream>
 
 // Initialize static member
 int Reservation::next_reserve_id = 10001;
 
 // Constructor
-Reservation::Reservation(Student student, DiningHall dining_hall, Meal meal)
+Reservation::Reservation(const Student* student, DiningHall* dining_hall, Meal* meal)
     : student(student), dining_hall(dining_hall), meal(meal) {
     this->reservation_id = next_reserve_id++;
     this->created_at = time(0);
@@ -17,15 +18,15 @@ void Reservation::set_reservation_id(int reservation_id) {
     this->reservation_id = reservation_id;
 }
 
-void Reservation::set_student(Student student) {
+void Reservation::set_student(const Student* student) {
     this->student = student;
 }
 
-void Reservation::set_dining_hall(DiningHall dining_hall) {
+void Reservation::set_dining_hall(DiningHall* dining_hall) {
     this->dining_hall = dining_hall;
 }
 
-void Reservation::set_meal(Meal meal) {
+void Reservation::set_meal(Meal* meal) {
     this->meal = meal;
 }
 
@@ -42,15 +43,15 @@ int Reservation::get_reservation_id() const {
     return this->reservation_id;
 }
 
-Student Reservation::get_student() const {
+const Student* Reservation::get_student() const {
     return this->student;
 }
 
-DiningHall Reservation::get_dining_hall() const {
+DiningHall* Reservation::get_dining_hall() const {
     return this->dining_hall;
 }
 
-Meal Reservation::get_meal() const {
+Meal* Reservation::get_meal() const {
     return this->meal;
 }
 
@@ -72,16 +73,16 @@ bool Reservation::cancel() {
 }
 
 void Reservation::print() {
-    std::cout << "Meal: " << this->meal.get_name() << " - " << static_cast<int>(this->meal.get_meal_type()) << std::endl
-            << "Dining Hall: " << this->dining_hall.get_name() << std::endl
-            << "Create at " << this->created_at << std::endl
-            << "Status: " << static_cast<int>(this->status) << std::endl;
+    std::cout << "Meal: " << this->meal->get_name() << " - " << static_cast<int>(this->meal->get_meal_type()) << std::endl
+              << "Dining Hall: " << this->dining_hall->get_name() << std::endl
+              << "Created at: " << this->created_at << std::endl
+              << "Status: " << static_cast<int>(this->status) << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const Reservation& reservation) {
-    os << "Meal: " << reservation.meal.get_name() << " - " << static_cast<int>(reservation.meal.get_meal_type()) << std::endl
-    << "Dining Hall: " << reservation.dining_hall.get_name() << std::endl
-    << "Create at " << reservation.created_at << std::endl
-    << "Status: " << static_cast<int>(reservation.status) << std::endl;
+    os << "Meal: " << reservation.meal->get_name() << " - " << static_cast<int>(reservation.meal->get_meal_type()) << std::endl
+       << "Dining Hall: " << reservation.dining_hall->get_name() << std::endl
+       << "Created at: " << reservation.created_at << std::endl
+       << "Status: " << static_cast<int>(reservation.status) << std::endl;
     return os;
 }
