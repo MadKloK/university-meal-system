@@ -42,7 +42,7 @@ public:
     // Methods
     void print() const override;
     void reserve_meal(const Reservation& reservation);
-    bool cancel_reservation(int reservation_id); // Returns true when canceling was successful
+    bool cancel_reservation(int reservation_id); // returns true when canceling was successful
 };
 
 #endif // STUDENT_H
