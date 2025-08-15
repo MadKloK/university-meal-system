@@ -9,6 +9,10 @@ private:
     std::vector<Reservation> reservations;
 
 public:
+    //Constructor
+    ShoppingCart(Reservation reservation);
+
+    //methods
     Transaction confirm();
     void add_reservation(Reservation reservation);
     void remove_reservation(int ID);
