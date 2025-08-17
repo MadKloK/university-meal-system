@@ -31,8 +31,11 @@ void ShoppingCart::remove_reservation(int ID){
 }
 
 void ShoppingCart::view_shopping_cart_items(){
+    int reservation_index;
     for(Reservation reservation : reservations){
+        std::cout << reservation_index << ". ";
         reservation.print();
+        reservation_index++;
     }
 }
 
