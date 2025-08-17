@@ -1,2 +1,97 @@
 #pragma once
 
+#include <string>
+#include "admin.hpp"
+#include "student.hpp"
+#include "shopping_cart.hpp"
+
+enum class SessionStatus {
+    AUTHENTICATED,
+    ANONYMOUS
+};
+
+class SessionBase {
+protected:
+    time_t created_at{};
+    time_t lasttime_login{};
+    SessionStatus status{SessionStatus::ANONYMOUS};
+
+    virtual void load_session() = 0;
+    virtual void save_session() = 0;
+
+public:
+    virtual void login(std::string username, std::string passw) = 0;
+    virtual void logout() = 0;
+
+    // getters
+    time_t get_created_at() const { return created_at; }
+    time_t get_lasttime_login() const { return lasttime_login; }
+    SessionStatus get_status() const { return status; }
+
+    // setters
+    void set_created_at(time_t created_at_) { created_at = created_at_; }
+    void set_lasttime_login(time_t lasttime_login_) { lasttime_login = lasttime_login_; }
+    void set_status(SessionStatus status_) { status = status_; }
+};
+
+namespace AdminSession {
+
+class SessionManager : public SessionBase {
+private:
+    // Singleton core
+    SessionManager() = default;
+    SessionManager(const SessionManager&) = delete;
+    SessionManager& operator=(const SessionManager&) = delete;
+
+    // Members
+    Admin* current_admin = nullptr;
+    int admin_id = -1;
+
+    void load_session() override;
+    void save_session() override;
+
+public:
+    void login(std::string username, std::string passw) override;
+    void logout() override;
+
+    // getters
+    int get_admin_id() const { return admin_id; }
+    Admin* get_current_admin_ptr() const { return current_admin; }
+
+    // Singleton accessor
+    static SessionManager& instance();
+};
+
+} // namespace AdminSession
+
+namespace StudentSession {
+
+class SessionManager : public SessionBase {
+private:
+    // Singleton core
+    SessionManager() = default;
+    SessionManager(const SessionManager&) = delete;
+    SessionManager& operator=(const SessionManager&) = delete;
+
+    // Members
+    Student* current_student = nullptr;
+    ShoppingCart* shopping_cart = nullptr;
+    int student_id = -1;
+
+    void load_session() override;
+    void save_session() override;
+
+public:
+    void login(std::string username, std::string passw) override;
+    void logout() override;
+
+    // getters
+    int get_student_id() const { return student_id; }
+    Student* get_current_student_ptr() const { return current_student; }
+    ShoppingCart* get_shopping_cart_ptr() const { return shopping_cart; }
+
+    // Singleton accessor
+    static SessionManager& instance();
+};
+
+} // namespace StudentSession
