@@ -5,10 +5,9 @@
 
 // Enums
 enum class MealType {
-    MEAL1,
-    MEAL2,
-    MEAL3,
-    MEAL4
+    BREAKFAST,
+    LUNCH,
+    DINNER
 };
 
 enum class MealSideItem {

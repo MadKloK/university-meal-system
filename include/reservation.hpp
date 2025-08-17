@@ -7,7 +7,7 @@
 #include <ctime>
 
 enum class ReservationStatus {
-    PENDING,
+    NOT_PAID,
     CONFIRMED,
     CANCELED,
     FAILED
