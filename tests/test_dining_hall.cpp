@@ -1,37 +1,25 @@
-#include "../src/dining_hall.cpp"
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+#include "dining_hall.hpp"
 
-int main()
-{
-    std::string name1, name2, address1, address2;
+TEST_CASE("Testing dininghall class", "[dining_hall]"){
+    DiningHall dining_hall("aboozar", "modares", 100);
     
-    name1 = "aboozar";
-    name2 = "tohid";
-    address1 = "modares";
-    address2 = "tohid";
-    
-    //testing constractor and print
-    DiningHall d1(name1, address1,1);
-    d1.print();
+    SECTION("Constructor and getters"){
+        REQUIRE(dining_hall.get_address() == "modares");
+        REQUIRE(dining_hall.get_capacity() == 100);
+        REQUIRE(dining_hall.get_name() == "aboozar");
+    }
 
-    //testing setters
-    d1.set_name(name2);
-    d1.set_address(address2);
-    d1.set_capacity(50);
-    d1.print();
+    SECTION("Setters"){
+        dining_hall.set_address("enghelab");
+        dining_hall.set_capacity(200);
+        dining_hall.set_name("shariati");
 
-    //testing getters
-    if(d1.get_name() == "tohid")
-        std::cout << "getname method works!\n";
-    else
-        std::cout << "getname method is fucked!\n";
-    
-    if(d1.get_address() == "tohid")
-        std::cout << "getaddress method works!\n";
-    else
-        std::cout << "getaddress method is fucked!\n";
-    
-    if(d1.get_capacity() == 50)
-        std::cout << "getcapacity method works!\n";
-    else
-        std::cout << "getcapacity method is fucked!\n";    
+        REQUIRE(dining_hall.get_address() == "enghelab");
+        REQUIRE(dining_hall.get_capacity() == 200);
+        REQUIRE(dining_hall.get_name() == "shariati");
+    }
 }
+
+

@@ -73,6 +73,10 @@ void Student::print() const {
               << "ID: " << this->student_id << ", Email: " << this->email << std::endl;
 }
 
+std::string Student::getType() const{
+        return "Student";
+}
+
 void Student::reserve_meal(const Reservation& reservation) {
     for (const auto& res : this->reservations) {
         if (res.get_meal()->get_meal_type() == reservation.get_meal()->get_meal_type()) {

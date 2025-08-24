@@ -22,6 +22,9 @@ private:
 public:
     // Constructor
     explicit Student(const std::string& name, const std::string& last_name, const std::string& student_id, const std::string& email, const std::string& hashed_password);
+    
+    //distractor
+    ~Student() override;
 
     // Friends
     friend std::ostream& operator<<(std::ostream& os, const Student& st);
@@ -41,6 +44,7 @@ public:
 
     // Methods
     void print() const override;
+    std::string getType() const override;
     void reserve_meal(const Reservation& reservation);
     bool cancel_reservation(int reservation_id); // returns true when canceling was successful
 };

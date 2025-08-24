@@ -6,7 +6,7 @@
 using namespace std;
 
 void test_student_creation() {
-    Student s("1241234222", "s1222223", "John Allenasdf");
+    Student s("mahdi", "es", 54, "ss@gmail.com", "hdhshjhs");
     assert(s.get_balance() == 100.0f);
     assert(s.get_name() == "John");
 }

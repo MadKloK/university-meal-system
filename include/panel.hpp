@@ -24,7 +24,7 @@ public:
     void show_student_info();
     void check_balance();
     void view_reservations();
-    void add_reservation();
+    void view_shoppingcart();
     void add_to_shopping_cart();
     void confirm_shopping_cart();
     void remove_shopping_cart_item();

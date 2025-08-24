@@ -27,8 +27,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE meal_lib)
 # Testing
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests AND NOT CMAKE_CONFIGURATION_TYPES)
     enable_testing()
-    
     # Create test executable
+    
     add_executable(meal_tests
         tests/test_student.cpp
         tests/test_meal.cpp
@@ -38,7 +38,8 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests AND NOT CMAKE_CONFIGURATION_TYPES)
     target_link_libraries(meal_tests PRIVATE meal_lib)
     
     # Register tests
-    add_test(NAME student_tests COMMAND meal_tests [student])
-    add_test(NAME meal_tests COMMAND meal_tests [meal])
+    add_test(NAME student_tests COMMAND meal_tests student)
+    add_test(NAME dining_hall_tests COMMAND meal_tests dining_hall)
+    add_test(NAME meal_tests COMMAND meal_tests meal)
     add_test(NAME all_tests COMMAND meal_tests)
 endif()

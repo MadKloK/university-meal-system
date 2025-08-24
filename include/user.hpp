@@ -5,10 +5,10 @@
 
 class User {
 private:
-    std::string hashed_password;
-    std::string last_name;
     std::string name;
+    std::string last_name;
     int user_id;
+    std::string hashed_password;
 
 public:
     // Constructor
