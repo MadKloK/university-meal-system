@@ -1,10 +1,11 @@
 #pragma once
 
-#include "student.hpp"
-#include "dining_hall.hpp"
-#include "meal.hpp"
-
 #include <ctime>
+
+
+class Student;
+class DiningHall;
+class Meal;
 
 enum class ReservationStatus {
     NOT_PAID,

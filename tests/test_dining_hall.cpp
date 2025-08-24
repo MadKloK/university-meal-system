@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "dining_hall.hpp"
@@ -23,3 +24,5 @@ TEST_CASE("Testing dininghall class", "[dining_hall]"){
 }
 
 
+=======
+>>>>>>> bb2bfa6b2e32c0a58723554bed3f39f0a2ecf7a0

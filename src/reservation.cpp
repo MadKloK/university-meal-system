@@ -1,5 +1,13 @@
-#include "reservation.hpp"
 #include <iostream>
+
+#include "reservation.hpp"
+<<<<<<< HEAD
+#include <iostream>
+=======
+#include "student.hpp"
+#include "dining_hall.hpp"
+#include "meal.hpp"
+>>>>>>> bb2bfa6b2e32c0a58723554bed3f39f0a2ecf7a0
 
 // Initialize static member
 int Reservation::next_reserve_id = 10001;
