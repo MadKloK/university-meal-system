@@ -6,15 +6,15 @@
 
 class User {
 private:
-    std::string hashed_password;
-    std::string last_name;
     std::string name;
+    std::string last_name;
+    std::string hashed_password;
     int user_id;
 
 public:
     // Constructor
-    User(const std::string& name, const std::string& last_name, int user_id, const std::string& hashed_password)
-        : name(name), last_name(last_name), user_id(user_id), hashed_password(hashed_password) {}
+    User(const std::string& name, const std::string& last_name, const std::string& hashed_password, int user_id)
+        : name(name), last_name(last_name), hashed_password(hashed_password), user_id(user_id) {}
 
     // Getters
     const std::string& get_hashed_password() const { return hashed_password; }

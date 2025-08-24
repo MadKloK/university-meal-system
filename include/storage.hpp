@@ -1,9 +1,10 @@
 #ifndef STORAGE_HPP
 #define STORAGE_HPP
 
+#include <vector>
+
 #include "meal.hpp"
 #include "dining_hall.hpp"
-#include <vector>
 
 class Storage {
 private:
