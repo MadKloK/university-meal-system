@@ -1,12 +1,15 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include "user.hpp"
-#include "reservation.hpp"
-#include "meal.hpp"
-
 #include <string>
 #include <vector>
+
+#include "user.hpp"
+#include "reservation.hpp"
+
+class User;
+class Reservation;
+class Meal;
 
 // Student class definition
 class Student : public User {
@@ -38,6 +41,7 @@ public:
     float get_balance() const;
     bool get_is_active() const;
     std::vector<Reservation> get_reservations() const;
+    std::string get_type() const override;
 
     // Methods
     void print() const override;

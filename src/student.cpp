@@ -1,5 +1,10 @@
-#include "student.hpp"
 #include <iostream>
+
+#include "student.hpp"
+#include "user.hpp"
+#include "reservation.hpp"
+#include "meal.hpp"
+
 
 // Static initialization
 int Student::next_id = 1001;
@@ -14,10 +19,6 @@ Student::Student(const std::string& name, const std::string& last_name, const st
     if (email.length() < 10) {
         throw std::invalid_argument("Invalid email");
     }
-}
-
-Student::~Student() {
-    this->reservations.clear();
 }
 
 // Getters
@@ -39,6 +40,10 @@ bool Student::get_is_active() const {
 
 std::vector<Reservation> Student::get_reservations() const {
     return this->reservations;
+}
+
+std::string Student::get_type() const {
+    return "Student";
 }
 
 // Setters
@@ -69,7 +74,7 @@ void Student::set_is_active(bool is_active) {
 
 // Methods
 void Student::print() const {
-    std::cout << "Student: " << getName() << " " << getLastName() << " - user " << getUserId() << "\n"
+    std::cout << "Student: " << get_name() << " " << get_last_name() << " - user " << get_user_id() << "\n"
               << "ID: " << this->student_id << ", Email: " << this->email << std::endl;
 }
 
@@ -95,7 +100,7 @@ bool Student::cancel_reservation(int reservation_id) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Student& st) {
-    os << "Student: " << st.getName() << " " << st.getLastName() << " - user " << st.getUserId() << "\n"
+    os << "Student: " << st.get_name() << " " << st.get_last_name() << " - user " << st.get_user_id() << "\n"
        << "ID: " << st.get_student_id() << ", Email: " << st.get_email() << std::endl;
     return os;
 }
