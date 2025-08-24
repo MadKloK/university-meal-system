@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(university-meal-system LANGUAGES CXX)
 
-# Compiler settings
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -20,15 +19,13 @@ add_library(meal_lib
 )
 target_include_directories(meal_lib PUBLIC include)
 
-# Main executable (only contains main.cpp)
-add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE meal_lib)
+# Application executable
+add_executable(meal_app app/main.cpp)
+target_link_libraries(meal_app PRIVATE meal_lib)
 
-# Testing
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests AND NOT CMAKE_CONFIGURATION_TYPES)
+# Enable tests if tests/ exists
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
     enable_testing()
-    
-    # Create test executable
     add_executable(meal_tests
         tests/test_student.cpp
         tests/test_meal.cpp
@@ -37,8 +34,5 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests AND NOT CMAKE_CONFIGURATION_TYPES)
     )
     target_link_libraries(meal_tests PRIVATE meal_lib)
     
-    # Register tests
-    add_test(NAME student_tests COMMAND meal_tests [student])
-    add_test(NAME meal_tests COMMAND meal_tests [meal])
     add_test(NAME all_tests COMMAND meal_tests)
 endif()

@@ -1,6 +1,9 @@
+#include <iostream>
+
 #include "reservation.hpp"
 #include "student.hpp"
-#include <iostream>
+#include "dining_hall.hpp"
+#include "meal.hpp"
 
 // Initialize static member
 int Reservation::next_reserve_id = 10001;

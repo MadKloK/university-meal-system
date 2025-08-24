@@ -1,10 +1,11 @@
 #pragma once
 
-#include "student.hpp"
-#include "dining_hall.hpp"
-#include "meal.hpp"
-
 #include <ctime>
+
+
+class Student;
+class DiningHall;
+class Meal;
 
 enum class ReservationStatus {
     PENDING,
@@ -33,16 +34,16 @@ public:
     // Setters
     void set_reservation_id(int reservation_id);
     void set_student(const Student* student);
-    void set_dining_hall(DiningHall* dining_hall) { this->dining_hall = dining_hall; }
-    void set_meal(Meal* meal) { this->meal = meal; }
+    void set_dining_hall(DiningHall* dining_hall);
+    void set_meal(Meal* meal);
     void set_status(ReservationStatus status);
     void set_created_at(time_t created_at);
 
     // Getters
     int get_reservation_id() const;
     const Student* get_student() const;
-    DiningHall* get_dining_hall() const { return dining_hall; }
-    Meal* get_meal() const { return meal; }
+    DiningHall* get_dining_hall() const;
+    Meal* get_meal() const;
     ReservationStatus get_status() const;
     time_t get_created_at() const;
 
