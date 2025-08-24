@@ -1,4 +1,6 @@
 #include "../include/panel.hpp"
+#include "student_session.cpp"
+#include "Storage.cpp"
 #include <iostream>
 
 // Show menu
@@ -6,7 +8,7 @@ void Panel::show_menu() {
     std::cout << "1. Show Student Info\n"
               << "2. Check Balance\n"
               << "3. View Reservations\n"
-              << "4. Add Reservation\n"
+              << "4. View ShoppingCart"
               << "5. Add to Shopping Cart\n"
               << "6. Confirm Shopping Cart\n"
               << "7. Remove Shopping Cart Item\n"
@@ -29,7 +31,7 @@ void Panel::action(int choice) {
             view_reservations();
             break;
         case 4:
-            add_reservation();
+            view_shoppingcart();
             break;
         case 5:
             add_to_shopping_cart();
@@ -60,6 +62,75 @@ void Panel::action(int choice) {
             break;
     }
 }
+
+//actions
+void Panel::show_student_info(){
+    std::cout << *SessionManager::instance().get_current_student_ptr();
+}
+
+void Panel::check_balance(){
+    float balance = SessionManager::instance().get_current_student_ptr()-> get_balance();
+    std::cout << "your balance is: " << balance << " $" << std::endl;
+}
+
+void Panel::view_reservations(){
+    std::vector<Reservation> reservations = SessionManager::instance().get_current_student_ptr()-> get_reservations();
+    for(Reservation reservation : reservations){
+        reservation.print();
+    }
+}
+
+void Panel::view_shoppingcart(){
+    SessionManager::instance().get_shopping_cart_ptr()-> view_shopping_cart_items();
+}
+
+void Panel::add_to_shopping_cart(){
+    std::vector<Meal> all_meals = Storage::instance().get_all_meals();
+    std::vector<DiningHall> all_dining_halls = Storage::instance().get_all_dining_halls();
+    int meal_index = 0;
+    int dining_hall_index = 0;
+
+    std::cout << "Select your meal: " << std::endl;
+    for(Meal meal : all_meals){
+        std::cout << meal_index + 1 <<". ";
+        meal.print();
+        meal_index++;
+    }
+    std::cin >>"your choice: " >> meal_index;
+    
+    std::cout << "Select your dining hall: " << std::endl;
+    for(DiningHall dining_hall : all_dining_halls){
+        std::cout << dining_hall_index + 1 <<". ";
+        dining_hall.print();
+        dining_hall_index++;
+    }
+    std::cin >>"your choice: " >> dining_hall_index;
+
+    Reservation new_reservation(SessionManager::instance().get_current_student_ptr(), &all_dining_halls.at(dining_hall_index), &all_meals.at(meal_index));
+    SessionManager::instance().get_shopping_cart_ptr()-> add_reservation(new_reservation);
+}
+
+void Panel::remove_shopping_cart_item(){
+    int reservation_index;
+    std::vector<Reservation> shopping_cart_items = SessionManager::instance().get_shopping_cart_ptr()-> get_reservations();
+
+    std::cout <<"which one you want to remove?" << std::endl;
+    SessionManager::instance().get_shopping_cart_ptr()-> view_shopping_cart_items();
+    std::cin >> "your choice: " >> reservation_index;
+
+    int ID = shopping_cart_items.at(reservation_index).get_reservation_id();
+    SessionManager::instance().get_shopping_cart_ptr()-> remove_reservation(ID);
+}
+
+void Panel::increase_balance(){
+    // Create a banking portal please.
+}
+
+// not for this phase:
+// void addToShoppingCart() 
+// void confirmShoppingCart()
+// void viewRecentTransactions()
+// void cancelReservation(int)
 
 // Exit method
 void Panel::exit() {

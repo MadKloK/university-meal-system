@@ -34,8 +34,8 @@ public:
     const std::vector<DiningHall>& get_all_dining_halls() const { return all_dining_halls; }
 
     // Methods
-    void add_meal(const Meal& meal) { all_meals.push_back(meal); }
-    void add_dining_hall(const DiningHall& dining_hall) { all_dining_halls.push_back(dining_hall); }
+    void add_meal(const Meal& meal) { all_meals.push_back(meal);  meal_id_counter++;}
+    void add_dining_hall(const DiningHall& dining_hall) { all_dining_halls.push_back(dining_hall); dining_hall_id_counter++;}
 };
 
 #endif // STORAGE_HPP
