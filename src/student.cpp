@@ -11,7 +11,7 @@ int Student::next_id = 1001;
 
 // Constructor
 Student::Student(const std::string& name, const std::string& last_name, const std::string& student_id, const std::string& email, const std::string& hashed_password)
-    : User(name, last_name, next_id++, hashed_password), student_id(student_id), email(email) {
+    : User(name, last_name, hashed_password, next_id++), student_id(student_id), email(email) {
     if (student_id.length() < 10) {
         throw std::invalid_argument("Invalid Student ID");
     }
