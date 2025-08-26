@@ -24,6 +24,7 @@ public:
     std::string get_name() const;
     std::string get_address() const;
     int get_capacity() const;
+    int get_hall_id() const;
 
     // Methods
     void print();

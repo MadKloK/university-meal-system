@@ -57,6 +57,10 @@ int DiningHall::get_capacity() const {
     return this->capacity;
 }
 
+int DiningHall::get_hall_id() const {
+    return this->hall_id;
+}
+
 // Methods
 void DiningHall::print() {
     std::cout << "Dining Hall: " << this->name << "\tcapacity: " << this->capacity << std::endl

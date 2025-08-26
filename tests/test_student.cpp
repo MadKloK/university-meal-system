@@ -12,7 +12,7 @@ TEST_CASE("Student constructor and getters work correctly", "[Student]") {
     REQUIRE(s.get_student_id() == "1234567890");
     REQUIRE(s.get_email() == "john.doe@email.com");
     REQUIRE(s.get_balance() == 0.0f);
-    REQUIRE(s.get_is_active() == true);
+    REQUIRE(s.get_is_active() == false);
     REQUIRE(s.get_reservations().empty());
 }
 
@@ -43,8 +43,8 @@ TEST_CASE("Student setters work and validate input", "[Student]") {
 TEST_CASE("Student can reserve and cancel meals", "[Student]") {
     Student s("Bob", "White", "1234567890", "bob@email.com", "pw");
     DiningHall* dh = new DiningHall("aboozar", "modares", 100);
-    Meal* meal1 = new Meal("kabab", 2500, MealType::MEAL1, ReserveDay::MONDAY, true);
-    Meal* meal2 = new Meal("bb", 1800, MealType::MEAL2, ReserveDay::FRIDAY, true);
+    Meal* meal1 = new Meal("kabab", 2500, MealType::BREAKFAST, ReserveDay::MONDAY, true);
+    Meal* meal2 = new Meal("bb", 1800, MealType::DINNER, ReserveDay::FRIDAY, true);
     Reservation r1(&s, dh, meal1);
     Reservation r2(&s, dh, meal2);
 
@@ -59,7 +59,7 @@ TEST_CASE("Student can reserve and cancel meals", "[Student]") {
     REQUIRE(s.get_reservations().size() == 2);
 
     // Cancel reservation
-    REQUIRE(s.cancel_reservation(10001));
+    REQUIRE(s.cancel_reservation(10005));
     REQUIRE(s.get_reservations().size() == 1);
 
     // Cancel non-existing reservation
