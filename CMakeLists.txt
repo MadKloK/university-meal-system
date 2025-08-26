@@ -23,6 +23,17 @@ target_include_directories(meal_lib PUBLIC include)
 add_executable(meal_app app/main.cpp)
 target_link_libraries(meal_app PRIVATE meal_lib)
 
+# Add bcrypt.c to the core library
+target_sources(meal_lib PRIVATE libs/bcrypt/bcrypt.c)
+
+# Include headers
+target_include_directories(meal_lib PUBLIC
+    include
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/bcrypt
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/catch2
+    ${CMAKE_CURRENT_SOURCE_DIR}/libs/json
+)
+
 # Enable tests if tests/ exists
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
     enable_testing()
@@ -33,6 +44,14 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
         tests/test_dining_hall.cpp
     )
     target_link_libraries(meal_tests PRIVATE meal_lib)
-    
+
+    # Include headers for tests + third-party
+    target_include_directories(meal_tests PRIVATE
+        include
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/bcrypt
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/catch2
+        ${CMAKE_CURRENT_SOURCE_DIR}/libs/json
+    )
+
     add_test(NAME all_tests COMMAND meal_tests)
 endif()
