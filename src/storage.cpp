@@ -41,6 +41,18 @@ void Storage::meal_activation(int ID, bool is_active){
     meal->set_is_active(is_active);
 }
 
+void Storage::print_all_meals(){
+    for(Meal meal : get_all_meals()){
+        meal.print();
+    }
+}
+
+void Storage::print_all_halls(){
+    for(DiningHall hall : get_all_dining_halls()){
+        hall.print();
+    }
+}
+
 std::vector<Meal>::iterator Storage::find_meal(int ID){
     for (auto it = all_meals.begin(); it != all_meals.end(); ++it) {
         if (it->get_meal_id() == ID) {

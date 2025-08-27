@@ -40,8 +40,10 @@ public:
     void remove_meal(int ID);
     void remove_dining_hall(int ID);
     void meal_activation(int ID, bool is_active);
-    std::vector<Meal>::iterator findMeal(int ID);
-    std::vector<DiningHall>::iterator findDiningHall(int ID);
+    void print_all_meals();
+    void print_all_halls();
+    std::vector<Meal>::iterator find_meal(int ID);
+    std::vector<DiningHall>::iterator find_dining_hall(int ID);
 
 };
 

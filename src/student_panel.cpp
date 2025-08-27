@@ -1,7 +1,9 @@
-#include "../include/panel.hpp"
-#include "student_session.cpp"
-#include "Storage.cpp"
+#include "panel.hpp"
+#include "session_manager.hpp"
+#include "Storage.hpp"
 #include <iostream>
+
+using namespace StudentSession;
 
 // Show menu
 void Panel::show_menu() {
@@ -31,7 +33,7 @@ void Panel::action(int choice) {
             view_reservations();
             break;
         case 4:
-            view_shoppingcart();
+            view_shopping_cart();
             break;
         case 5:
             add_to_shopping_cart();
@@ -80,12 +82,12 @@ void Panel::view_reservations(){
     }
 }
 
-void Panel::view_shoppingcart(){
+void Panel::view_shopping_cart(){
     SessionManager::instance().get_shopping_cart_ptr()-> view_shopping_cart_items();
 }
 
 void Panel::add_to_shopping_cart(){
-    std::vector<Meal> all_meals = Storage::instance().get_all_meals();
+    std::vector<Meal> all_meals = Storage::instance().get_all_meals();                //should show only active meals(fix it)
     std::vector<DiningHall> all_dining_halls = Storage::instance().get_all_dining_halls();
     int meal_index = 0;
     int dining_hall_index = 0;
