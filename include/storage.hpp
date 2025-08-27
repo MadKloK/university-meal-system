@@ -29,14 +29,20 @@ public:
     }
 
     // Getters
-    int get_meal_id_counter() const { return meal_id_counter; }
-    int get_dining_hall_id_counter() const { return dining_hall_id_counter; }
-    const std::vector<Meal>& get_all_meals() const { return all_meals; }
-    const std::vector<DiningHall>& get_all_dining_halls() const { return all_dining_halls; }
+    int get_meal_id_counter() const;
+    int get_dining_hall_id_counter() const;
+    const std::vector<Meal>& get_all_meals() const;
+    const std::vector<DiningHall>& get_all_dining_halls() const;
 
     // Methods
-    void add_meal(const Meal& meal) { all_meals.push_back(meal);  meal_id_counter++;}
-    void add_dining_hall(const DiningHall& dining_hall) { all_dining_halls.push_back(dining_hall); dining_hall_id_counter++;}
+    void add_meal(const Meal& meal);
+    void add_dining_hall(const DiningHall& dining_hall);
+    void remove_meal(int ID);
+    void remove_dining_hall(int ID);
+    void meal_activation(int ID, bool is_active);
+    std::vector<Meal>::iterator findMeal(int ID);
+    std::vector<DiningHall>::iterator findDiningHall(int ID);
+
 };
 
 #endif // STORAGE_HPP
