@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
 
-#include "student.hpp"
-#include "dining_hall.hpp"
-#include "meal.hpp"
+#include "models/student.hpp"
+#include "models/dining_hall.hpp"
+#include "models/meal.hpp"
 #include "catch.hpp"
 
 TEST_CASE("Student constructor and getters work correctly", "[Student]") {

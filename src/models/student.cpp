@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "student.hpp"
-#include "user.hpp"
-#include "reservation.hpp"
-#include "meal.hpp"
+#include "models/student.hpp"
+#include "models/user.hpp"
+#include "models/reservation.hpp"
+#include "models/meal.hpp"
 
 
 // Static initialization

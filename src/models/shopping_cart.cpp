@@ -1,4 +1,5 @@
-#include "shopping_cart.hpp"
+#include "models/shopping_cart.hpp"
+#include <iostream>
 #include <algorithm>
 
 //Constructor

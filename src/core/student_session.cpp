@@ -1,8 +1,8 @@
-#include "session_manager.hpp"
+#include "core/session_manager.hpp"
 
-using namespace AdminSession;
+using namespace StudentSession;
 
-// methods
+//methods
 void SessionManager::load_session(){
     //empty for now
 }

@@ -1,4 +1,4 @@
-#include "meal.hpp"
+#include "models/meal.hpp"
 #include <iostream>
 #include <algorithm>
 

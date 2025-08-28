@@ -1,6 +1,6 @@
 #include <iostream>
-#include "user.hpp"
-#include "student.hpp"   // if you have a derived class
+#include "models/admin.hpp"
+#include "models/student.hpp"   // if you have a derived class
 
 int main() {
     std::cout << "Program started!\n";

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "admin.hpp"
-#include "student.hpp"
-#include "shopping_cart.hpp"
+#include "models/admin.hpp"
+#include "models/student.hpp"
+#include "models/shopping_cart.hpp"
 
 
 enum class SessionStatus {

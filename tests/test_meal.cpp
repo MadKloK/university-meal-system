@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "meal.hpp"
+#include "models/meal.hpp"
 
 TEST_CASE("Meal constructor initializes fields correctly", "[Meal]") {
     Meal m("Pasta", 25.5, MealType::BREAKFAST, ReserveDay::FRIDAY, true);

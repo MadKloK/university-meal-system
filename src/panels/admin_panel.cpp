@@ -1,5 +1,5 @@
-#include "admin_panel.hpp"
-#include "storage.hpp"
+#include "panels/admin_panel.hpp"
+#include "data/storage.hpp"
 #include <iostream>
 
 

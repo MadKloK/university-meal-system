@@ -1,6 +1,6 @@
-#include "panel.hpp"
-#include "session_manager.hpp"
-#include "Storage.hpp"
+#include "panels/student_panel.hpp"
+#include "core/session_manager.hpp"
+#include "data/storage.hpp"
 #include <iostream>
 
 using namespace StudentSession;

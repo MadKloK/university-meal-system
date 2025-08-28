@@ -1,4 +1,4 @@
-#include "dining_hall.hpp"
+#include "models/dining_hall.hpp"
 #include <iostream>
 
 // Static initialization

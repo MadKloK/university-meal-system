@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "dining_hall.hpp"
+#include "models/dining_hall.hpp"
 
 TEST_CASE("DiningHall constructor sets fields correctly", "[DiningHall]") {
     DiningHall hall("Main Hall", "123 University Ave", 200);

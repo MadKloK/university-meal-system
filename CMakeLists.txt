@@ -12,10 +12,10 @@ endif()
 
 # Core library
 add_library(meal_lib
-    src/student.cpp
-    src/reservation.cpp
-    src/meal.cpp
-    src/dining_hall.cpp
+    src/models/student.cpp
+    src/models/reservation.cpp
+    src/models/meal.cpp
+    src/models/dining_hall.cpp
     libs/crypt_blowfish/crypt_blowfish.c
     libs/crypt_blowfish/crypt_gensalt.c
     libs/crypt_blowfish/wrapper.c
@@ -46,7 +46,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
     target_link_libraries(meal_tests PRIVATE meal_lib)
 
     target_include_directories(meal_tests PRIVATE
-        include
+        include/
         libs/catch2
         libs/json
         libs/crypt_blowfish

@@ -1,4 +1,4 @@
-#include "session_manager.hpp"
+#include "core/session_manager.hpp"
 
 using namespace AdminSession;
 

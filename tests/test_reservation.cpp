@@ -1,8 +1,8 @@
 #include "catch.hpp"
-#include "reservation.hpp"
-#include "student.hpp"
-#include "dining_hall.hpp"
-#include "meal.hpp"
+#include "models/reservation.hpp"
+#include "models/student.hpp"
+#include "models/dining_hall.hpp"
+#include "models/meal.hpp"
 #include <sstream>
 
 TEST_CASE("Reservation constructor and getters work correctly") {
