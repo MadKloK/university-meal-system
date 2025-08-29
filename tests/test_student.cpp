@@ -6,7 +6,7 @@
 #include "catch.hpp"
 
 TEST_CASE("Student constructor and getters work correctly", "[Student]") {
-    Student s("John", "Doe", "1234567890", "john.doe@email.com", "hashedpw");
+    Student s("John", "Doe", "1234567890", "john.doe@email.com", "09154547851", "hashedpw");
     REQUIRE(s.get_name() == "John");
     REQUIRE(s.get_last_name() == "Doe");
     REQUIRE(s.get_student_id() == "1234567890");
@@ -14,15 +14,17 @@ TEST_CASE("Student constructor and getters work correctly", "[Student]") {
     REQUIRE(s.get_balance() == 0.0f);
     REQUIRE(s.get_is_active() == false);
     REQUIRE(s.get_reservations().empty());
+    REQUIRE(s.get_phone() == "09154547851");
 }
 
 TEST_CASE("Student constructor throws on invalid student_id or email", "[Student]") {
-    REQUIRE_THROWS_AS(Student("Jane", "Smith", "123", "jane.smith@email.com", "pw"), std::invalid_argument);
-    REQUIRE_THROWS_AS(Student("Jane", "Smith", "1234567890", "short@em", "pw"), std::invalid_argument);
+    REQUIRE_THROWS_AS(Student("Jane", "Smith", "123", "jane.smith@email.com", "09155148795", "pw"), std::invalid_argument);
+    REQUIRE_THROWS_AS(Student("Jane", "Smith", "1234567890", "short@em", "09157841124" ,"pw"), std::invalid_argument);
+    REQUIRE_THROWS_AS(Student("Jane", "Smith", "1234567890", "short@em", "09178411245" ,"pw"), std::invalid_argument);
 }
 
 TEST_CASE("Student setters work and validate input", "[Student]") {
-    Student s("Alice", "Brown", "1234567890", "alice@email.com", "pw");
+    Student s("Alice", "Brown", "1234567890", "alice@email.com", "01234567890","pw");
     s.set_student_id("0987654321");
     REQUIRE(s.get_student_id() == "0987654321");
 
@@ -35,13 +37,16 @@ TEST_CASE("Student setters work and validate input", "[Student]") {
     s.set_is_active(false);
     REQUIRE_FALSE(s.get_is_active());
 
+    s.set_phone("01234567890");
+    REQUIRE(s.get_phone() == "01234567890");
+
     REQUIRE_THROWS_AS(s.set_student_id(""), std::invalid_argument);
     REQUIRE_THROWS_AS(s.set_email("short@em"), std::invalid_argument);
     REQUIRE_THROWS_AS(s.set_balance(-1.0f), std::invalid_argument);
 }
 
 TEST_CASE("Student can reserve and cancel meals", "[Student]") {
-    Student s("Bob", "White", "1234567890", "bob@email.com", "pw");
+    Student s("Bob", "White", "1234567890", "bob@email.com", "01234567891", "pw");
     DiningHall* dh = new DiningHall("aboozar", "modares", 100);
     Meal* meal1 = new Meal("kabab", 2500, MealType::BREAKFAST, ReserveDay::MONDAY, true);
     Meal* meal2 = new Meal("bb", 1800, MealType::DINNER, ReserveDay::FRIDAY, true);
@@ -70,7 +75,7 @@ TEST_CASE("Student can reserve and cancel meals", "[Student]") {
 }
 
 TEST_CASE("Student print and operator<< output", "[Student]") {
-    Student s("Eve", "Black", "1234567890", "eve@email.com", "pw");
+    Student s("Eve", "Black", "1234567890", "eve@email.com", "01234567890", "pw");
     std::ostringstream oss;
     oss << s;
     std::string output = oss.str();
