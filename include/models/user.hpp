@@ -2,6 +2,9 @@
 
 #include <string>
 #include <iostream>
+extern "C" {
+    #include "ow-crypt.h"
+}
 
 
 class User {
@@ -17,16 +20,20 @@ public:
         : name(name), last_name(last_name), hashed_password(hashed_password), user_id(user_id) {}
 
     // Getters
-    const std::string& get_hashed_password() const { return hashed_password; }
-    const std::string& get_last_name() const { return last_name; }
-    const std::string& get_name() const { return name; }
-    int get_user_id() const { return user_id; }
+    const std::string& get_hashed_password() const;
+    const std::string& get_last_name() const;
+    const std::string& get_name() const;
+    int get_user_id() const;
 
     // Setters
-    void set_hashed_password(const std::string& hashed_password) { this->hashed_password = hashed_password; }
-    void set_last_name(const std::string& last_name) { this->last_name = last_name; }
-    void set_name(const std::string& name) { this->name = name; }
-    void set_user_id(int user_id) { this->user_id = user_id; }
+    void set_hashed_password(const std::string& password);
+    void set_last_name(const std::string& last_name);
+    void set_name(const std::string& name);
+    void set_user_id(int user_id);
+    void set_password(const std::string& password);
+
+    //methods
+    bool check_password(std::string& password);
 
     // Virtual methods
     virtual void print() const = 0;

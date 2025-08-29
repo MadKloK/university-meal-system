@@ -12,6 +12,7 @@ endif()
 
 # Core library
 add_library(meal_lib
+    src/models/user.cpp
     src/models/student.cpp
     src/models/reservation.cpp
     src/models/meal.cpp
