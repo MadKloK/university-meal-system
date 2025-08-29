@@ -1,0 +1,18 @@
+{
+    "d_config": ".",
+    "d_users": "../data/users",
+    "d_session": "../data/session",
+    "d_storage": "../data/storage",
+    "d_logs:": "../data/logs",
+    "j_admin_config": "admin_config.json",
+    "c_student": "../data/users/students.csv",
+    "j_student_transactions": "../data/users/student_transactions.json",
+    "j_admins": "../data/users/admins.json",
+    "j_admin_sessions": "../data/sessions/admin_sessions.json",
+    "j_student_sessions": "../data/sessions/student_sessions.json",
+    "j_all_meals": "..data/storage/all_meals.json",
+    "j_all_dining_halls": "../data/storage/all_dining_halls.json",
+    "l_student_logs": "../data/logs/student.log",
+    "l_admin_logs": "../data/logs/admin.log",
+    "l_system_logs": "../data/logs/system.log"
+}
