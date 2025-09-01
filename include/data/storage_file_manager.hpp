@@ -8,8 +8,11 @@
 using json = nlohmann::json;
 namespace fs = std::filesystem;
 
-void load_dining_halls();
-void load_meals();
+class StorageFileManager {
+public:
+    void load_dining_halls();
+    void load_meals();
 
-void save_dining_halls();
-void save_meals();
+    void save_dining_halls();
+    void save_meals();
+};

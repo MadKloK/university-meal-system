@@ -1,6 +1,6 @@
 #include "storage_file_manager.hpp"
 
-void load_dining_halls(){
+void StorageFileManager::load_dining_halls(){
     json j = json::array();
 
     fs::path file_path = ConfigPath::instance().j_all_dining_hall;
@@ -31,7 +31,7 @@ void load_dining_halls(){
     }
 }
 
-void load_meals(){
+void StorageFileManager::load_meals(){
     json j = json::array();
 
     fs::path file_path = ConfigPath::instance().j_all_meals;
@@ -66,7 +66,7 @@ void load_meals(){
     }
 }
 
-void save_dining_halls(){
+void StorageFileManager::save_dining_halls(){
     json j = json::array(); // root array for all dining halls
 
     fs::path file_path = ConfigPath::instance().j_all_dining_hall;
@@ -96,7 +96,7 @@ void save_dining_halls(){
     out.close();
 }
 
-void save_meals(){
+void StorageFileManager::save_meals(){
     json j = json::array(); // root array for all meals
 
     fs::path file_path = ConfigPath::instance().j_all_meals;

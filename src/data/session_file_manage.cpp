@@ -1,6 +1,6 @@
 #include "session_file_manager.hpp"
 
-void load_student_session(const std::string &student_id){
+void SessionFileManager::load_student_session(const std::string &student_id){
     std::string file_name = student_id + ".json";
     fs::path file_path = ConfigPath::instance().d_student_sessions / file_name;
     bool found = fs::exists(file_path);
@@ -62,7 +62,7 @@ void load_student_session(const std::string &student_id){
     }
 }
 
-void save_student_session(){
+void SessionFileManager::save_student_session(){
     json j;
 
     std::string file_name = StudentSession::SessionManager::instance().get_current_student_ptr()->get_student_id() + ".json";
