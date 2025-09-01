@@ -10,8 +10,8 @@
 int Student::next_id = 1001;
 
 // Constructor
-Student::Student(const std::string& name, const std::string& last_name, const std::string& student_id, const std::string& email, const std::string& hashed_password)
-    : User(name, last_name, hashed_password, next_id++), student_id(student_id), email(email) {
+Student::Student(const std::string& name, const std::string& last_name, const std::string& student_id, const std::string& email, const std::string& phone,const std::string& hashed_password)
+    : User(name, last_name, hashed_password, next_id++), student_id(student_id), email(email), phone(phone) {
     if (student_id.length() < 10) {
         throw std::invalid_argument("Invalid Student ID");
     }
@@ -46,6 +46,10 @@ std::string Student::get_type() const {
     return "Student";
 }
 
+std::string Student::get_phone() const{
+    return phone;
+}
+
 // Setters
 void Student::set_student_id(const std::string& student_id) {
     if (student_id.empty()) {
@@ -70,6 +74,13 @@ void Student::set_balance(float balance) {
 
 void Student::set_is_active(bool is_active) {
     this->is_active = is_active;
+}
+
+void Student::set_phone(std::string phone) {
+    if (sizeof(phone) != 11) {
+        throw std::invalid_argument("Phone number is wrong!");
+    }
+    this->phone = phone;
 }
 
 // Methods

@@ -6,7 +6,7 @@
 #include <sstream>
 
 TEST_CASE("Reservation constructor and getters work correctly") {
-    Student s("Ali", "Mohammadi", "1234567890", "Ali@gmail.com", "jj55");
+    Student s("Ali", "Mohammadi", "1234567890", "Ali@gmail.com", "12345678900", "jj55");
     DiningHall dh("tohid", "tohid", 100);
     Meal m("Kabab", 15.5, MealType::BREAKFAST, ReserveDay::FRIDAY, true);
 
@@ -20,8 +20,8 @@ TEST_CASE("Reservation constructor and getters work correctly") {
 }
 
 TEST_CASE("Reservation setters work correctly") {
-    Student s1("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "hh88");
-    Student s2("Ali", "Mohammadi", "1234567890", "Ali@gmail.com", "jj55");
+    Student s1("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "10234567891", "hh88");
+    Student s2("Ali", "Mohammadi", "1234567890", "Ali@gmail.com", "01234567890", "jj55");
     DiningHall dh1("tohid", "tohid", 100);
     DiningHall dh2("shokat", "shokat", 150);
     Meal m1("Kabab", 15.5, MealType::BREAKFAST, ReserveDay::FRIDAY, true);
@@ -45,7 +45,7 @@ TEST_CASE("Reservation setters work correctly") {
 }
 
 TEST_CASE("Reservation cancel method works") {
-    Student s("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "hh88");
+    Student s("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "01234567890", "hh88");
     DiningHall dh("tohid", "tohid", 100);
     Meal m("Kabab", 15.5, MealType::BREAKFAST, ReserveDay::FRIDAY, true);
 
@@ -59,7 +59,7 @@ TEST_CASE("Reservation cancel method works") {
 }
 
 TEST_CASE("Reservation print and operator<< output") {
-    Student s("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "hh88");
+    Student s("Mohammad", "Alizade", "65432112345", "Mohammad@gmail.com", "01234567890", "hh88");
     DiningHall dh("tohid", "tohid", 100);
     Meal m("Kabab", 15.5, MealType::BREAKFAST, ReserveDay::FRIDAY, true);
 
