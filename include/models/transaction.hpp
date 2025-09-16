@@ -38,4 +38,6 @@ public:
     void set_type(TransactionType t);
     void set_status(TransactionStatus s);
     void set_created_at(time_t t);
+
+    void print() const;
 };
