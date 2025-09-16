@@ -2,10 +2,6 @@
 
 #include <string>
 #include <iostream>
-extern "C" {
-    #include "ow-crypt.h"
-}
-
 
 class User {
 private:
@@ -14,26 +10,30 @@ private:
     std::string hashed_password;
     int user_id;
 
+    // helper for hashing
+    static std::string hash_password(const std::string& password);
+
 public:
     // Constructor
-    User(const std::string& name, const std::string& last_name, const std::string& hashed_password, int user_id)
-        : name(name), last_name(last_name), hashed_password(hashed_password), user_id(user_id) {}
+    User(const std::string& name,
+         const std::string& last_name,
+         const std::string& password,  // plain password - will be hashed
+         int user_id);
 
     // Getters
-    const std::string& get_hashed_password() const;
-    const std::string& get_last_name() const;
-    const std::string& get_name() const;
-    int get_user_id() const;
+    const std::string& get_hashed_password() const { return hashed_password; }
+    const std::string& get_last_name() const { return last_name; }
+    const std::string& get_name() const { return name; }
+    int get_user_id() const { return user_id; }
 
     // Setters
-    void set_hashed_password(const std::string& password);
-    void set_last_name(const std::string& last_name);
-    void set_name(const std::string& name);
-    void set_user_id(int user_id);
+    void set_last_name(const std::string& ln) { last_name = ln; }
+    void set_name(const std::string& n) { name = n; }
+    void set_user_id(int id) { user_id = id; }
     void set_password(const std::string& password);
 
-    //methods
-    bool check_password(std::string& password);
+    // Methods
+    bool check_password(const std::string& password) const;
 
     // Virtual methods
     virtual void print() const = 0;
