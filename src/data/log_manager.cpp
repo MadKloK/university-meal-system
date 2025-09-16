@@ -27,6 +27,6 @@ void LogManager::write_jsonline(const std::string& filename, const LogEntry& e) 
     ofs << j.dump() << '\n';
 }
 
-void LogManager::logSystem(const LogEntry& e)  { write_jsonline("system.json", e); }
-void LogManager::logAdmin(const LogEntry& e)   { write_jsonline("admin.json", e); }
-void LogManager::logStudent(const LogEntry& e) { write_jsonline("student.json", e); }
+void LogManager::logSystem(const LogEntry& e)  { write_jsonline("system.log", e); }
+void LogManager::logAdmin(const LogEntry& e)   { write_jsonline("admin.log", e); }
+void LogManager::logStudent(const LogEntry& e) { write_jsonline("student.log", e); }

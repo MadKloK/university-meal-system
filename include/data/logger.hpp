@@ -31,7 +31,6 @@ public:
         }
     }
 
-
 private:
     Type type_;
 };
