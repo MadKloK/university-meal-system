@@ -15,7 +15,9 @@ private:
 public:    
     fs::path d_config;
     fs::path d_users; 
-    fs::path d_sessions;      
+    fs::path d_sessions;
+    fs::path d_student_sessions;
+    fs::path d_admin_sessions;      
     fs::path d_storage; 
     fs::path d_logs;
     fs::path j_admin_config;
@@ -23,8 +25,6 @@ public:
     fs::path c_student;
     fs::path j_student_transactions;
     fs::path j_admin;
-    fs::path j_admin_session;
-    fs::path j_student_session;
     fs::path j_all_meals;
     fs::path j_all_dining_hall;
     fs::path l_student;

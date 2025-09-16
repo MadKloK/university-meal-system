@@ -5,11 +5,12 @@
 int Transaction::transaction_next_id = 1001;
 
 //Constructor
-Transaction::Transaction(std::string tracking_code, float amount, TransactionType type, time_t time){
+Transaction::Transaction(std::string tracking_code, float amount, TransactionType type, TransactionStatus status, time_t time){
     set_transaction_id(transaction_next_id ++);
     set_tracking_code(tracking_code);
     set_amount(amount);
     set_type(type);
+    set_status(status);
     created_at = time;
 }
 

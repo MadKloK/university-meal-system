@@ -56,6 +56,10 @@ const std::vector<MealSideItem>& Meal::get_side_items() const {
     return this->side_items;
 }
 
+ReserveDay Meal::get_reserve_day() const {
+    return reserve_day;
+}
+
 // Methods
 void Meal::print() {
     std::cout << "Meal: " << this->name << "\t- id: " << this->meal_id << "\n"

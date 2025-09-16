@@ -30,6 +30,7 @@ public:
     void remove_shopping_cart_item();
     void increase_balance();
     void view_recent_transactions();
+    void cancel_reservation_intractive();
     void cancel_reservation(int reservation_id);
     void exit();
 };

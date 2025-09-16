@@ -24,7 +24,7 @@ private:
     time_t created_at;
 
 public:
-    Transaction(std::string tracking_code, float amount, TransactionType type, time_t time);
+    Transaction(std::string tracking_code, float amount, TransactionType type, TransactionStatus status, time_t time);
     int get_transaction_id() const;
     time_t get_created_at() const;
     std::string get_tracking_code() const;

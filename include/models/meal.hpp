@@ -45,15 +45,17 @@ public:
     void set_name(const std::string& name);
     void set_price(float price);
     void set_meal_type(MealType meal_type);
+    void set_is_active(bool is_active) { this->is_active = is_active; }
     
     // Getters
     int get_meal_id() const;
     const std::string& get_name() const;
     float get_price() const;
     MealType get_meal_type() const;
+    ReserveDay get_reserve_day() const;
     const std::vector<MealSideItem>& get_side_items() const;
     bool get_is_active() const { return is_active; }
-    void set_is_active(bool is_active) { this->is_active = is_active; }
+
     
     // Methods
     void print();
