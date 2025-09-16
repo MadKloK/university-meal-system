@@ -19,6 +19,10 @@ a Cpp meal system that just works as well as the nothing it does
 
 ## Building
 
+# Atttention!
+- note that the provided data is only for testing purposes.
+- edit the ".gitignore" file to prevent any data leak!
+
 ```bash
 # Configure project
 mkdir build && cd build
