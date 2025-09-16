@@ -87,18 +87,21 @@ void Panel::view_shopping_cart(){
 }
 
 void Panel::add_to_shopping_cart(){
-    std::vector<Meal> all_meals = Storage::instance().get_all_meals();                //should show only active meals(fix it)
+    std::vector<Meal> all_meals = Storage::instance().get_all_meals();
     std::vector<DiningHall> all_dining_halls = Storage::instance().get_all_dining_halls();
     int meal_index = 0;
     int dining_hall_index = 0;
 
     std::cout << "Select your meal: " << std::endl;
     for(Meal meal : all_meals){
-        std::cout << meal_index + 1 <<". ";
-        meal.print();
-        meal_index++;
+        if(meal.get_is_active()){ 
+            std::cout << meal_index + 1 <<". ";
+            meal.print();
+            meal_index++;
+        }
     }
-    std::cin >>"your choice: " >> meal_index;
+    std::cout << "your choice: ";
+    std::cin >> meal_index;
     
     std::cout << "Select your dining hall: " << std::endl;
     for(DiningHall dining_hall : all_dining_halls){
@@ -106,7 +109,8 @@ void Panel::add_to_shopping_cart(){
         dining_hall.print();
         dining_hall_index++;
     }
-    std::cin >>"your choice: " >> dining_hall_index;
+    std::cout << "your choice: ";
+    std::cin >> dining_hall_index;
 
     Reservation new_reservation(SessionManager::instance().get_current_student_ptr(), &all_dining_halls.at(dining_hall_index), &all_meals.at(meal_index));
     SessionManager::instance().get_shopping_cart_ptr()-> add_reservation(new_reservation);
@@ -118,21 +122,84 @@ void Panel::remove_shopping_cart_item(){
 
     std::cout <<"which one you want to remove?" << std::endl;
     SessionManager::instance().get_shopping_cart_ptr()-> view_shopping_cart_items();
-    std::cin >> "your choice: " >> reservation_index;
+    std::cout << "your choice: ";
+    std::cin >> reservation_index;
 
     int ID = shopping_cart_items.at(reservation_index).get_reservation_id();
     SessionManager::instance().get_shopping_cart_ptr()-> remove_reservation(ID);
 }
 
 void Panel::increase_balance(){
-    // Create a banking portal please.
+    float amount;
+    Transaction transaction("", 0, TransactionType::TRANSFER, TransactionStatus::PENDING, time(0));
+    
+    std::cout << "the amount you want to increase: ";
+    std::cin >> amount;
+    amount += SessionManager::instance().get_current_student_ptr()->get_balance();
+    SessionManager::instance().get_current_student_ptr()->set_balance(amount);
 }
 
-// not for this phase:
-// void addToShoppingCart() 
-// void confirmShoppingCart()
-// void viewRecentTransactions()
-// void cancelReservation(int)
+void Panel::confirm_shopping_cart(){
+    std::string confirm;
+
+    SessionManager::instance().get_shopping_cart_ptr()->view_shopping_cart_items();
+
+    std::cout << "Do you confirm the items? (y/n)";
+    std::cin >> confirm;
+    
+    if(confirm == "y"){
+        float cost = 0;
+        Transaction transaction("", 0, TransactionType::PAYMENT, TransactionStatus::PENDING, time(0));
+        for(Reservation r : SessionManager::instance().get_shopping_cart_ptr()->get_reservations()){
+            cost += r.get_meal()->get_price();
+        }
+        transaction.set_amount(cost);
+
+        if(cost < SessionManager::instance().get_current_student_ptr()->get_balance()){
+            std::cout << "insufficient balance!";
+            transaction.set_status(TransactionStatus::FAILED);
+        }
+        else{
+            for(Reservation r : SessionManager::instance().get_shopping_cart_ptr()->get_reservations()){
+                r.set_status(ReservationStatus::CONFIRMED);
+                SessionManager::instance().get_current_student_ptr()->reserve_meal(r);
+            }
+            
+            float balance = SessionManager::instance().get_current_student_ptr()->get_balance() - cost;
+            SessionManager::instance().get_current_student_ptr()->set_balance(balance);
+            transaction.set_status(TransactionStatus::COMPLETED);
+
+            std::cout << "lets say you just paid. reservations confirmed!";
+        }
+    }
+
+}
+
+void viewRecentTransactions(){
+
+}
+
+void Panel::cancel_reservation(int id){
+    for(Reservation r : reservations){
+        if(r.get_reservation_id() == id){
+            r.cancel();
+        }
+    }
+}
+
+void Panel::cancel_reservation_intractive(){
+    std::vector<Reservation> reservations = SessionManager::instance().get_current_student_ptr()->get_reservations();
+    int ID;
+
+    for(Reservation r : reservations){
+        r.print();
+    }
+
+    std::cout << "which one you want to cancle? (enter the id)";
+    std::cin >> ID;
+
+    cancel_reservation(ID);
+}
 
 // Exit method
 void Panel::exit() {
