@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "meal.hpp"
-#include "dining_hall.hpp"
+#include "models/meal.hpp"
+#include "models/dining_hall.hpp"
 
 class Storage {
 private:

@@ -10,22 +10,26 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Core library
+# Collect all library sources
+file(GLOB_RECURSE LIB_CPP_SOURCES
+    src/core/*.cpp
+    src/data/*.cpp
+    src/models/*.cpp
+    src/panels/*.cpp
+)
+
+file(GLOB LIB_C_SOURCES
+    libs/crypt_blowfish/*.c
+)
+
 add_library(meal_lib
-    src/data/log_manager.cpp
-    src/models/user.cpp
-    src/models/student.cpp
-    src/models/reservation.cpp
-    src/models/meal.cpp
-    src/models/dining_hall.cpp
-    libs/crypt_blowfish/crypt_blowfish.c
-    libs/crypt_blowfish/crypt_gensalt.c
-    libs/crypt_blowfish/wrapper.c
+    ${LIB_CPP_SOURCES}
+    ${LIB_C_SOURCES}
 )
 
 target_include_directories(meal_lib PUBLIC
     include
-    libs/crypt_blowfish      # for ow-crypt.h
+    libs/crypt_blowfish      # For ow-crypt.h
     libs/catch2
     libs/json
 )
@@ -34,21 +38,16 @@ target_include_directories(meal_lib PUBLIC
 add_executable(meal_app app/main.cpp)
 target_link_libraries(meal_app PRIVATE meal_lib)
 
-# Enable tests if tests/ exists
+# Tests
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/tests)
     enable_testing()
+    file(GLOB TEST_SOURCES tests/*.cpp)
 
-    add_executable(meal_tests
-        tests/test_hpass.cpp
-        tests/test_student.cpp
-        tests/test_meal.cpp
-        tests/test_reservation.cpp
-        tests/test_dining_hall.cpp
-    )
+    add_executable(meal_tests ${TEST_SOURCES})
     target_link_libraries(meal_tests PRIVATE meal_lib)
 
     target_include_directories(meal_tests PRIVATE
-        include/
+        include
         libs/catch2
         libs/json
         libs/crypt_blowfish

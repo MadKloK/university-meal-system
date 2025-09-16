@@ -8,11 +8,6 @@ ShoppingCart::ShoppingCart(Reservation reservation){
 }
 
 //methods
-Transaction ShoppingCart::confirm(){
-    //empty for now
-}
-
-//methods
 void ShoppingCart::add_reservation(Reservation reservation){
     auto it = std::find(reservations.begin(), reservations.end(), reservation);
 

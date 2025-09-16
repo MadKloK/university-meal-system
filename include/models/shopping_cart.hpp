@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "transaction.hpp"
-#include "reservation.hpp"
+#include "models/transaction.hpp"
+#include "models/reservation.hpp"
 
 class ShoppingCart {
 private:

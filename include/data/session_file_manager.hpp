@@ -1,9 +1,9 @@
 #pragma once
 
+#include "core/session_manager.hpp"
+#include "data/storage.hpp"
 #include "json.hpp"
 #include "config_path.hpp"
-#include "session_manager.hpp"
-#include "storage.hpp"
 #include <filesystem>
 #include <fstream>
 

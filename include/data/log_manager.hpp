@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "log_entry.hpp"
+#include "data/log_entry.hpp"
 
 class LogManager {
 public:

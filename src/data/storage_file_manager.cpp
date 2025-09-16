@@ -1,4 +1,4 @@
-#include "storage_file_manager.hpp"
+#include "data/storage_file_manager.hpp"
 
 void StorageFileManager::load_dining_halls(){
     json j = json::array();
@@ -31,7 +31,7 @@ void StorageFileManager::load_dining_halls(){
     }
 }
 
-void StorageFileManager::load_meals(){
+void StorageFileManager::load_meals() {
     json j = json::array();
 
     fs::path file_path = ConfigPath::instance().j_all_meals;

@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <ctime>
-#include "log_manager.hpp"
-#include "log_level.hpp"
+#include "data/log_manager.hpp"
+#include "data/log_level.hpp"
 
 class Logger {
 public:

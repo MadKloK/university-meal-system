@@ -1,196 +1,127 @@
-#include "admin_panel.hpp"
-#include "storage.hpp"
-#include "storage_file_manager.hpp"
+#include "panels/admin_panel.hpp"
 #include <iostream>
 
-
-//Show menu
-void AdminPanel::show_menu(){
-    std::cout << "===== Admin Panel Menu =====\n"
-                << "1. Choose csv File\n"
-                << "2. Show All Meals\n"
-                << "3. Show All DiningHalls\n"
-                << "4. Add New Meal\n"
-                << "5. Add New DiningHall\n"
-                << "6. Remove a Meal\n"
-                << "7. Active Or Deavtive a Meal\n"
-                << "8. Remove a DiningHall\n"
-                << "9. Exit\n"
-                << "Please enter your choice: ";
+// Constructor
+AdminPanel::AdminPanel(const std::string& admin_id)
+    : admin_id_(admin_id) {
+    std::cout << "AdminPanel created for admin: " << admin_id_ << "\n";
 }
 
-//Reciving the command
-void AdminPanel::action(int action)
-{
-    switch(action) {
-        case 1:
-            choose_csv_file_intractive();  
-            break;
-        case 2:
-            display_all_meals();
-            break;
-        case 3:
-            display_all_dininig_halls();
-            break;
-        case 4:
-            add_new_meal_intractive();
-            break;
-        case 5:
-            add_new_hall_intractive();
-            break;
-        case 6:
-            remove_meal_interactive();
-            break;
-        case 7:
-            meal_activaion_interactive();
-            break;
-        case 8:
-            remove_hall_interactive();
-            break;
-        case 9:
-            exit();
-            break;
-        default:
-            std::cout << "Invalide Choice. Please try again later";
-            break;
+// Select CSV file directly
+void AdminPanel::choose_csv_file(const fs::path& path) {
+    csv_file_ = path;
+    std::cout << "CSV file chosen: " << csv_file_ << "\n";
+}
+
+// Select CSV interactively
+void AdminPanel::choose_csv_file_interactive() {
+    std::string input;
+    std::cout << "Enter path to CSV file: ";
+    std::cin >> input;
+    csv_file_ = fs::path(input);
+    std::cout << "CSV file set to: " << csv_file_ << "\n";
+}
+
+// Show all meals
+void AdminPanel::display_all_meals() const {
+    std::cout << "[TODO] Display all meals\n";
+}
+
+// Show all dining halls
+void AdminPanel::display_all_dining_halls() const {
+    std::cout << "[TODO] Display all dining halls\n";
+}
+
+// Add new meal (interactive)
+void AdminPanel::add_new_meal_interactive() {
+    std::cout << "[TODO] Add new meal interactively\n";
+}
+
+// Add new hall (interactive)
+void AdminPanel::add_new_hall_interactive() {
+    std::cout << "[TODO] Add new hall interactively\n";
+}
+
+// Remove meal by ID
+void AdminPanel::remove_meal(int ID) {
+    std::cout << "[TODO] Remove meal with ID " << ID << "\n";
+}
+
+// Remove meal (interactive)
+void AdminPanel::remove_meal_interactive() {
+    int id;
+    std::cout << "Enter meal ID to remove: ";
+    std::cin >> id;
+    remove_meal(id);
+}
+
+// Activate/deactivate meal
+void AdminPanel::meal_activation(int ID, bool is_active) {
+    std::cout << "[TODO] Set meal " << ID
+              << (is_active ? " active\n" : " inactive\n");
+}
+
+// Interactive meal activation
+void AdminPanel::meal_activation_interactive() {
+    int id;
+    char choice;
+    std::cout << "Enter meal ID: ";
+    std::cin >> id;
+    std::cout << "Activate (y/n)? ";
+    std::cin >> choice;
+    meal_activation(id, (choice == 'y' || choice == 'Y'));
+}
+
+// Remove hall by ID
+void AdminPanel::remove_hall(int ID) {
+    std::cout << "[TODO] Remove hall with ID " << ID << "\n";
+}
+
+// Remove hall (interactive)
+void AdminPanel::remove_hall_interactive() {
+    int id;
+    std::cout << "Enter hall ID to remove: ";
+    std::cin >> id;
+    remove_hall(id);
+}
+
+// Show admin menu
+void AdminPanel::show_menu() const {
+    std::cout << "\n--- Admin Panel Menu ---\n";
+    std::cout << "1. Choose CSV file\n";
+    std::cout << "2. Display all meals\n";
+    std::cout << "3. Display all dining halls\n";
+    std::cout << "4. Add new meal\n";
+    std::cout << "5. Add new hall\n";
+    std::cout << "6. Remove meal\n";
+    std::cout << "7. Meal activation\n";
+    std::cout << "8. Remove hall\n";
+    std::cout << "9. Exit\n";
+    std::cout << "--------------------------\n";
+}
+
+// Execute action
+void AdminPanel::action(int action) {
+    switch (action) {
+        case 1: choose_csv_file_interactive(); break;
+        case 2: display_all_meals(); break;
+        case 3: display_all_dining_halls(); break;
+        case 4: add_new_meal_interactive(); break;
+        case 5: add_new_hall_interactive(); break;
+        case 6: remove_meal_interactive(); break;
+        case 7: meal_activation_interactive(); break;
+        case 8: remove_hall_interactive(); break;
+        case 9: exit(); break;
+        default: std::cout << "Invalid choice.\n"; break;
     }
 }
 
-//Actions
-void AdminPanel::choose_csv_file(fs::path path) {
-    ConfigPath::instance().c_student = path;
+// Exit admin panel
+void AdminPanel::exit() {
+    std::cout << "Exiting Admin Panel...\n";
 }
 
-void AdminPanel::choose_csv_file_intractive() {
-    std::string path;
-    std::cout << "Inter the path of csv file : \n";
-    std::cin >> path;
-    choose_csv_file(path);
-}
-
-void AdminPanel::display_all_meals() {          
-    StorageFileManager manager;
-
-    manager.load_meals();
-    Storage::instance().print_all_meals();
-    
-}
-
-void AdminPanel::display_all_dininig_halls() {
-    StorageFileManager manager;
-
-    manager.load_dining_halls();
-    Storage::instance().print_all_halls();
-}
-
-void AdminPanel::add_new_meal_intractive() {
-    std::string name;
-    float price;
-    int type;
-    int day;
-    StorageFileManager manager;
-
-    std::cout << "=== Adding a Meal ===\n";
-
-    std::cout << "Please inter the name : ";
-    std::cin >> name >> "\n";
-
-    std::cout << "Inter the price : ";
-    std::cin >> price >> "\n";
-
-    std::cout << "Choose the type of the food(\n0 : Breakfast,\n1 : Lunch,\n2 : Dinner) : ";
-    std::cin >> type >> "/n";
-    
-    std::cout << "Enter the day the meal is served(\n0 : Monday,\n1 : Tuesday,\n2 : Wednesday,\n3 : Thursday,\n4 : Friday) : ";
-    std::cin >> day >> "\n";
-
-    //can ask for be sure
-    Meal new_meal(name, price, static_cast<MealType>(type), static_cast<ReserveDay>(day));
-    Storage::instance().add_meal(new_meal);
-    manager.save_meals();
-}
-
-void AdminPanel::add_new_hall_intractive() {
-    std::string name;
-    std::string address;
-    int capacity;
-    StorageFileManager manager;
-
-    std::cout << "=== Adding a DiningHall ===\n";
-
-    std::cout << "Please inter the name : ";
-    std::cin >> name >> "\n";
-
-    std::cout << "Inter the addres : ";
-    std::cin >> address >> "\n";
-
-    std::cout << "Inter the capacity : ";
-    std::cin >> capacity >> "\n";
-
-    DiningHall new_hall(name, address, capacity);
-    Storage::instance().add_dining_hall(new_hall);
-    manager.save_dining_halls();
-}
-
-void AdminPanel::remove_meal(int ID) {
-    StorageFileManager manager;
-
-    Storage::instance().remove_meal(ID);
-    manager.save_meals();
-}
-
-void AdminPanel::remove_meal_interactive() {
-    StorageFileManager manager;
-    manager.load_meals();
-    int id;
-
-    Storage::instance().print_all_meals();
-
-    std::cout << "which one you want to remove? (enter the id)";
-    std::cin >> id;
-
-    remove_meal(id);
-}
-
-void AdminPanel::meal_acitvation(int ID, bool is_active) {
-    StorageFileManager manager;
-    
-    Storage::instance().meal_activation(ID, is_active);
-    manager.save_meals();
-}
-
-void AdminPanel::meal_activaion_interactive() {
-    Storage::instance().print_all_meals();
-
-    StorageFileManager manager;
-    int id;
-    bool is_active;
-
-    std::cout << "which one you want to modify? (enter the id)";
-    std::cin >> id;
-
-    std::cout << "active(1) or deactive(0)? (enter the number)";
-    std::cin >> is_active;
-
-    meal_acitvation(id, is_active);
-}
-
-void AdminPanel::remove_hall(int ID) {
-    StorageFileManager manager;
-
-    manager.save_dining_halls();
-    Storage::instance().remove_dining_hall(ID);
-}
-
-void AdminPanel::remove_hall_interactive() {
-    StorageFileManager manager;
-    manager.load_dining_halls();
-    int id;
-
-    Storage::instance().print_all_halls();
-
-    std::cout << "which one you want to remove? (enter the id)";
-    std::cin >> id;
-
-    remove_meal(id);
+// Getter
+std::string AdminPanel::get_admin_id() const {
+    return admin_id_;
 }

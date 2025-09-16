@@ -1,38 +1,49 @@
-#ifndef PANEL_HPP
-#define PANEL_HPP
+#ifndef STUDENT_PANEL_HPP
+#define STUDENT_PANEL_HPP
 
-#include "student.hpp"
-#include "reservation.hpp"
+#include "models/student.hpp"
+#include "models/reservation.hpp"
+#include "data/logger.hpp"       // optional if we want logging
 #include <vector>
 #include <string>
 
 class Panel {
 private:
-    Student* current_student; // Pointer to the current student
-    std::vector<Reservation> reservations; // List of reservations
-    std::vector<std::string> shopping_cart; // Shopping cart items
-    float balance = 0.0; // Current balance
+    Student* current_student;                    // Pointer to the current student
+    std::vector<Reservation> reservations;      // List of reservations
+    std::vector<std::string> shopping_cart;     // Shopping cart items
+    float balance = 0.0;                         // Current balance
     std::vector<std::string> recent_transactions; // Recent transactions
+    Logger logger_;                               // Logger instance for student actions
 
 public:
-    // Constructor
-    explicit Panel(Student* student) : current_student(student) {}
-
-    // Methods
+    // Main menu and action handler
+    void show_menu() const;
     void action(int choice);
-    void show_menu();
-    void show_student_info();
-    void check_balance();
-    void view_shopping_cart();
-    void view_reservations();
+
+    // Student info & balance
+    void show_student_info() const;
+    void check_balance() const;
+
+    // Shopping cart
+    void view_shopping_cart() const;
     void add_to_shopping_cart();
     void confirm_shopping_cart();
     void remove_shopping_cart_item();
-    void increase_balance();
-    void view_recent_transactions();
-    void cancel_reservation_intractive();
+
+    // Reservations
+    void view_reservations() const;
+    void cancel_reservation_interactive();
     void cancel_reservation(int reservation_id);
+
+    // Balance management
+    void increase_balance();
+
+    // Transaction history
+    void view_recent_transactions() const;
+
+    // Exit panel
     void exit();
 };
 
-#endif // PANEL_HPP
+#endif // STUDENT_PANEL_HPP

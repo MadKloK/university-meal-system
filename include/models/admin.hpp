@@ -1,7 +1,7 @@
 #ifndef ADMIN_HPP
 #define ADMIN_HPP
 
-#include "user.hpp"
+#include "models/user.hpp"
 #include <string>
 
 class Admin : public User {
