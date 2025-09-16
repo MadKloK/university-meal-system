@@ -19,7 +19,6 @@ a Cpp meal system that just works as well as the nothing it does
 
 ## Building
 
-
 ```bash
 # Configure project
 mkdir build && cd build
@@ -33,7 +32,9 @@ make -j4  # Uses 4 cores for faster compilation
 
 ## License  
 [MIT](LICENSE) - Copyright © 1939 Mohammad Zeynali & Mehdi Esmailzade
+```
 
 ## Atttention!
+
 - note that the provided data is only for testing purposes.
 - edit the ".gitignore" file to prevent any data leak!
