@@ -3,7 +3,7 @@
 [![CMake](https://img.shields.io/badge/CMake-3.10+-blue.svg)](https://cmake.org)
 [![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://isocpp.org/)
 
-A C++ system for managing student meal reservations in university dining halls.
+a Cpp meal system that just works as well as the nothing it does
 
 ## Features
 
@@ -31,4 +31,4 @@ make -j4  # Uses 4 cores for faster compilation
 ./university-meal-system
 
 ## License  
-[MIT](LICENSE) - Copyright © 1939 [Mohammad Zeynali]()  
+[MIT](LICENSE) - Copyright © 1939 Mohammad Zeynali & Mehdi Esmailzade
