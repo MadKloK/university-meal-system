@@ -4,6 +4,7 @@
 #include "student.hpp"
 #include "admin.hpp"
 #include "config_path.hpp"
+#include "transaction.hpp"
 
 
 namespace fs = std::filesystem;
@@ -16,8 +17,18 @@ public:
     //methods
     Student* get_student(std::string student_id, std::string password);
     Admin* get_admin(std::string password, std::string admin_id);
+    std::vector<Transaction> get_recent_transactions(const std::string& student_id);
+    
     
     void add_admin(const Admin& admin);
-    
+    void add_transaction(const Transaction& trans);
+    void add_transaction(const std::string& student_id, const Transaction& trans);
+
+
+    json transaction_to_json(const Transaction& trans) const;
+    Transaction json_to_transaction(const json& j) const;
     json admin_to_json(const Admin& admin);
+
+    json load_all_transactions() const;
+    void save_all_transactions(const json& data);
 };

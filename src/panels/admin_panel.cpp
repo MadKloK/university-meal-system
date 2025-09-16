@@ -1,5 +1,6 @@
-#include "panels/admin_panel.hpp"
-#include "data/storage.hpp"
+#include "admin_panel.hpp"
+#include "storage.hpp"
+#include "storage_file_manager.hpp"
 #include <iostream>
 
 
@@ -56,8 +57,8 @@ void AdminPanel::action(int action)
 }
 
 //Actions
-void AdminPanel::choose_csv_file(fs::path) {
-    //should copy csv file to /project/data
+void AdminPanel::choose_csv_file(fs::path path) {
+    ConfigPath::instance().c_student = path;
 }
 
 void AdminPanel::choose_csv_file_intractive() {
@@ -68,10 +69,17 @@ void AdminPanel::choose_csv_file_intractive() {
 }
 
 void AdminPanel::display_all_meals() {          
+    StorageFileManager manager;
+
+    manager.load_meals();
     Storage::instance().print_all_meals();
+    
 }
 
 void AdminPanel::display_all_dininig_halls() {
+    StorageFileManager manager;
+
+    manager.load_dining_halls();
     Storage::instance().print_all_halls();
 }
 
@@ -80,6 +88,7 @@ void AdminPanel::add_new_meal_intractive() {
     float price;
     int type;
     int day;
+    StorageFileManager manager;
 
     std::cout << "=== Adding a Meal ===\n";
 
@@ -98,12 +107,14 @@ void AdminPanel::add_new_meal_intractive() {
     //can ask for be sure
     Meal new_meal(name, price, static_cast<MealType>(type), static_cast<ReserveDay>(day));
     Storage::instance().add_meal(new_meal);
+    manager.save_meals();
 }
 
 void AdminPanel::add_new_hall_intractive() {
     std::string name;
     std::string address;
     int capacity;
+    StorageFileManager manager;
 
     std::cout << "=== Adding a DiningHall ===\n";
 
@@ -118,31 +129,68 @@ void AdminPanel::add_new_hall_intractive() {
 
     DiningHall new_hall(name, address, capacity);
     Storage::instance().add_dining_hall(new_hall);
+    manager.save_dining_halls();
 }
 
 void AdminPanel::remove_meal(int ID) {
+    StorageFileManager manager;
+
     Storage::instance().remove_meal(ID);
-    //file thing should be done
+    manager.save_meals();
 }
 
 void AdminPanel::remove_meal_interactive() {
-    //need to work with files(show meals and getting the ID)
+    StorageFileManager manager;
+    manager.load_meals();
+    int id;
+
+    Storage::instance().print_all_meals();
+
+    std::cout << "which one you want to remove? (enter the id)";
+    std::cin >> id;
+
+    remove_meal(id);
 }
 
 void AdminPanel::meal_acitvation(int ID, bool is_active) {
+    StorageFileManager manager;
+    
     Storage::instance().meal_activation(ID, is_active);
-    //file thing should be done
+    manager.save_meals();
 }
 
 void AdminPanel::meal_activaion_interactive() {
-    //need to work with files
+    Storage::instance().print_all_meals();
+
+    StorageFileManager manager;
+    int id;
+    bool is_active;
+
+    std::cout << "which one you want to modify? (enter the id)";
+    std::cin >> id;
+
+    std::cout << "active(1) or deactive(0)? (enter the number)";
+    std::cin >> is_active;
+
+    meal_acitvation(id, is_active);
 }
 
 void AdminPanel::remove_hall(int ID) {
+    StorageFileManager manager;
+
+    manager.save_dining_halls();
     Storage::instance().remove_dining_hall(ID);
-    //need file work
 }
 
 void AdminPanel::remove_hall_interactive() {
-    //need file work
+    StorageFileManager manager;
+    manager.load_dining_halls();
+    int id;
+
+    Storage::instance().print_all_halls();
+
+    std::cout << "which one you want to remove? (enter the id)";
+    std::cin >> id;
+
+    remove_meal(id);
 }

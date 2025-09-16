@@ -67,3 +67,26 @@ TransactionType Transaction::get_type() const{
     return type;
 }
 
+//Methods
+void Transaction::print() const {
+    const char* type_str = "";
+    switch (type) {
+        case TransactionType::TRANSFER: type_str = "TRANSFER"; break;
+        case TransactionType::PAYMENT: type_str = "PAYMENT"; break;
+    }
+    
+    const char* status_str = "";
+    switch (status) {
+        case TransactionStatus::PENDING: status_str = "PENDING"; break;
+        case TransactionStatus::COMPLETED: status_str = "COMPLETED"; break;
+        case TransactionStatus::FAILED: status_str = "FAILED"; break;
+    }
+    
+    std::cout << "Transaction ID: " << transaction_id << "\n"
+              << "Tracking Code: " << tracking_code << "\n"
+              << "Amount: " << amount << "\n"
+              << "Type: " << type_str << "\n"
+              << "Status: " << status_str << "\n"
+              << "Created At: " << created_at << std::endl;
+}
+

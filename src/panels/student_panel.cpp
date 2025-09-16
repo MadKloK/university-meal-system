@@ -51,10 +51,7 @@ void Panel::action(int choice) {
             view_recent_transactions();
             break;
         case 10:
-            int reservation_id;
-            std::cout << "Enter Reservation ID to cancel: ";
-            std::cin >> reservation_id;
-            cancel_reservation(reservation_id);
+            cancel_reservation_intractive();
             break;
         case 11:
             exit();
@@ -131,16 +128,21 @@ void Panel::remove_shopping_cart_item(){
 
 void Panel::increase_balance(){
     float amount;
+    UserFileManager manager;
     Transaction transaction("", 0, TransactionType::TRANSFER, TransactionStatus::PENDING, time(0));
     
     std::cout << "the amount you want to increase: ";
     std::cin >> amount;
+
     amount += SessionManager::instance().get_current_student_ptr()->get_balance();
     SessionManager::instance().get_current_student_ptr()->set_balance(amount);
+    transaction.set_status(TransactionStatus::COMPLETED);
+    manager.add_transaction(SessionManager::instance().get_current_student_ptr()->get_student_id(), transaction);
 }
 
 void Panel::confirm_shopping_cart(){
     std::string confirm;
+    UserFileManager manager;
 
     SessionManager::instance().get_shopping_cart_ptr()->view_shopping_cart_items();
 
@@ -158,6 +160,7 @@ void Panel::confirm_shopping_cart(){
         if(cost < SessionManager::instance().get_current_student_ptr()->get_balance()){
             std::cout << "insufficient balance!";
             transaction.set_status(TransactionStatus::FAILED);
+            manager.add_transaction(SessionManager::instance().get_current_student_ptr()->get_student_id(), transaction);
         }
         else{
             for(Reservation r : SessionManager::instance().get_shopping_cart_ptr()->get_reservations()){
@@ -168,6 +171,7 @@ void Panel::confirm_shopping_cart(){
             float balance = SessionManager::instance().get_current_student_ptr()->get_balance() - cost;
             SessionManager::instance().get_current_student_ptr()->set_balance(balance);
             transaction.set_status(TransactionStatus::COMPLETED);
+            manager.add_transaction(SessionManager::instance().get_current_student_ptr()->get_student_id(), transaction);
 
             std::cout << "lets say you just paid. reservations confirmed!";
         }
@@ -176,7 +180,13 @@ void Panel::confirm_shopping_cart(){
 }
 
 void viewRecentTransactions(){
+    UserFileManager manager;
+    std::vector<Transaction> transactions = manager.get_recent_transactions(
+    SessionManager::instance().get_current_student_ptr()->get_student_id());
 
+    for(Transaction t : transactions){
+        t.print();
+    }
 }
 
 void Panel::cancel_reservation(int id){
