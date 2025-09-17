@@ -1,6 +1,6 @@
-#include "admin_panel.hpp"
-#include "storage.hpp"
-#include "storage_file_manager.hpp"
+#include "panels/admin_panel.hpp"
+#include "data/storage.hpp"
+#include "data/storage_file_manager.hpp"
 #include <iostream>
 
 

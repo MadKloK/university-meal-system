@@ -1,7 +1,7 @@
 #pragma once
 
-#include "storage.hpp"
-#include "config_path.hpp"
+#include "data/storage.hpp"
+#include "data/config_path.hpp"
 #include "json.hpp"
 #include <filesystem>
 

@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "user.hpp"
-#include "reservation.hpp"
+#include "models/user.hpp"
+#include "models/reservation.hpp"
 
 class User;
 class Reservation;

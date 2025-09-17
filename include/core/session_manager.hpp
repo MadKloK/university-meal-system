@@ -1,11 +1,11 @@
 #pragma once
 
 #include <string>
-#include "session_file_manager.hpp"
-#include "user_file_manager.hpp"
-#include "admin.hpp"
-#include "student.hpp"
-#include "shopping_cart.hpp"
+#include "data/session_file_manager.hpp"
+#include "data/user_file_manager.hpp"
+#include "models/admin.hpp"
+#include "models/student.hpp"
+#include "models/shopping_cart.hpp"
 
 
 enum class SessionStatus {
@@ -51,12 +51,11 @@ private:
     Admin* current_admin = nullptr;
     int admin_id = -1;
 
+    
+    public:
     void load_session() override;
     void save_session() override;
-
-public:
     static bool sign_up();
-    static bool is_there_any_admin();
     void login(std::string username, std::string passw) override;
     void logout() override;
     
@@ -89,10 +88,10 @@ private:
     ShoppingCart* shopping_cart = nullptr;
     int student_id = -1;
 
+    
+    public:
     void load_session() override;
     void save_session() override;
-
-public:
     void login(std::string username, std::string passw) override;
     void logout() override;
     

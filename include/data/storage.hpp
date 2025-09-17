@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "meal.hpp"
+#include "models/meal.hpp"
 #include "dining_hall.hpp"
 
 class Storage {

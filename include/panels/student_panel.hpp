@@ -1,8 +1,8 @@
 #ifndef PANEL_HPP
 #define PANEL_HPP
 
-#include "student.hpp"
-#include "reservation.hpp"
+#include "models/student.hpp"
+#include "models/reservation.hpp"
 #include <vector>
 #include <string>
 

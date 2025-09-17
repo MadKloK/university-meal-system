@@ -1,10 +1,10 @@
 #include <filesystem>
 #include <fstream>
 #include "json.hpp"
-#include "student.hpp"
-#include "admin.hpp"
-#include "config_path.hpp"
-#include "transaction.hpp"
+#include "models/student.hpp"
+#include "models/admin.hpp"
+#include "models/transaction.hpp"
+#include "data/config_path.hpp"
 
 
 namespace fs = std::filesystem;
