@@ -1,3 +1,5 @@
+#pragma once
+
 #include <filesystem>
 #include <fstream>
 #include "json.hpp"
@@ -30,6 +32,8 @@ public:
     fs::path l_student;
     fs::path l_admin;
     fs::path l_system;
+    fs::path j_admin_session;
+    fs::path j_student_session;
 
     static ConfigPath& instance();
 

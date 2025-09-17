@@ -50,4 +50,6 @@ public:
     // Methods
     bool cancel(); // returns true if its not already canceled
     void print();
+    bool operator==(const Reservation& other) const;
+
 };

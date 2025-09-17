@@ -179,7 +179,7 @@ void Panel::confirm_shopping_cart(){
 
 }
 
-void viewRecentTransactions(){
+void Panel::view_recent_transactions(){
     UserFileManager manager;
     std::vector<Transaction> transactions = manager.get_recent_transactions(
     SessionManager::instance().get_current_student_ptr()->get_student_id());

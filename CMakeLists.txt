@@ -17,7 +17,20 @@ add_library(meal_lib
     src/models/student.cpp
     src/models/reservation.cpp
     src/models/meal.cpp
+    src/models/transaction.cpp         
     src/models/dining_hall.cpp
+    src/models/shopping_cart.cpp       
+    src/panels/admin_panel.cpp
+    src/panels/student_panel.cpp
+    src/data/user_file_manager.cpp
+    src/data/config_path.cpp
+    src/models/admin.cpp
+    src/core/admin_session.cpp
+    src/core/student_session.cpp
+    src/data/session_file_manager.cpp 
+    src/panels/admin_panel.cpp       
+    src/data/storage.cpp            
+    src/data/storage_file_manager.cpp  
     libs/crypt_blowfish/crypt_blowfish.c
     libs/crypt_blowfish/crypt_gensalt.c
     libs/crypt_blowfish/wrapper.c

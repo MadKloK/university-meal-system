@@ -89,3 +89,7 @@ std::ostream& operator<<(std::ostream& os, const Reservation& reservation) {
        << "Status: " << static_cast<int>(reservation.status) << std::endl;
     return os;
 }
+
+ bool Reservation::operator==(const Reservation& other) const {
+        return  get_reservation_id() == other.get_reservation_id();
+    }

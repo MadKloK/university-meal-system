@@ -7,10 +7,9 @@ ShoppingCart::ShoppingCart(Reservation reservation){
     reservations.push_back(reservation);
 }
 
-//methods
-Transaction ShoppingCart::confirm(){
-    //empty for now
-}
+//Transaction ShoppingCart::confirm(){
+    //return; 
+//}
 
 //methods
 void ShoppingCart::add_reservation(Reservation reservation){

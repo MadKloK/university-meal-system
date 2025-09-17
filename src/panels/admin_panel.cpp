@@ -93,16 +93,22 @@ void AdminPanel::add_new_meal_intractive() {
     std::cout << "=== Adding a Meal ===\n";
 
     std::cout << "Please inter the name : ";
-    std::cin >> name >> "\n";
+    std::cin >> name;
+    std::cout << "\n";
 
     std::cout << "Inter the price : ";
-    std::cin >> price >> "\n";
+    std::cin >> price;
+    std::cout << "\n";
+
 
     std::cout << "Choose the type of the food(\n0 : Breakfast,\n1 : Lunch,\n2 : Dinner) : ";
-    std::cin >> type >> "/n";
-    
+    std::cin >> type;
+    std::cout << "\n";
+
     std::cout << "Enter the day the meal is served(\n0 : Monday,\n1 : Tuesday,\n2 : Wednesday,\n3 : Thursday,\n4 : Friday) : ";
-    std::cin >> day >> "\n";
+    std::cin >> day;
+    std::cout << "\n";
+
 
     //can ask for be sure
     Meal new_meal(name, price, static_cast<MealType>(type), static_cast<ReserveDay>(day));
@@ -119,13 +125,16 @@ void AdminPanel::add_new_hall_intractive() {
     std::cout << "=== Adding a DiningHall ===\n";
 
     std::cout << "Please inter the name : ";
-    std::cin >> name >> "\n";
+    std::cin >> name;
+    std::cout << "\n";
 
     std::cout << "Inter the addres : ";
-    std::cin >> address >> "\n";
+    std::cin >> address;
+    std::cout << "\n";
 
     std::cout << "Inter the capacity : ";
-    std::cin >> capacity >> "\n";
+    std::cin >> capacity;
+    std::cout << "\n";
 
     DiningHall new_hall(name, address, capacity);
     Storage::instance().add_dining_hall(new_hall);
@@ -193,4 +202,8 @@ void AdminPanel::remove_hall_interactive() {
     std::cin >> id;
 
     remove_meal(id);
+}
+void AdminPanel::exit(){
+    std::cout << "have good day...";
+    exit();
 }
