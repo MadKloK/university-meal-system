@@ -31,4 +31,6 @@ public:
 
     json load_all_transactions() const;
     void save_all_transactions(const json& data);
+
+    bool is_there_admin();
 };

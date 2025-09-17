@@ -167,6 +167,25 @@ void UserFileManager::add_transaction(const std::string& student_id, const Trans
     save_all_transactions(all_data);
 }
 
+bool UserFileManager::is_there_admin(){
+    std::ifstream file(ConfigPath::instance().j_admin);
+    if (!file.is_open()) {
+        throw std::runtime_error("Cannot open file");
+    }
+
+    
+    file.seekg(0, std::ios::end);
+    if (file.tellg() == 0) {
+        return true;
+    }
+    file.seekg(0, std::ios::beg);
+
+    nlohmann::json j;
+    file >> j;
+
+    return j.empty();
+} 
+
 void UserFileManager::save_all_transactions(const json& data) {
     std::ofstream file(ConfigPath::instance().j_student_transactions);
     file << data.dump(4);

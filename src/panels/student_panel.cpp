@@ -190,6 +190,8 @@ void viewRecentTransactions(){
 }
 
 void Panel::cancel_reservation(int id){
+    std::vector<Reservation> reservations = SessionManager::instance().get_current_student_ptr()->get_reservations();
+    
     for(Reservation r : reservations){
         if(r.get_reservation_id() == id){
             r.cancel();

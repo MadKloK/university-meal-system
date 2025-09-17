@@ -8,15 +8,10 @@
 
 class Panel {
 private:
-    Student* current_student; // Pointer to the current student
-    std::vector<Reservation> reservations; // List of reservations
-    std::vector<std::string> shopping_cart; // Shopping cart items
-    float balance = 0.0; // Current balance
-    std::vector<std::string> recent_transactions; // Recent transactions
 
 public:
     // Constructor
-    explicit Panel(Student* student) : current_student(student) {}
+    explicit Panel() {}
 
     // Methods
     void action(int choice);

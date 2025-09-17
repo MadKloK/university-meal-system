@@ -12,7 +12,7 @@ endif()
 
 # Core library
 add_library(meal_lib
-    src/data/log_manager.cpp
+    src/data/system_log.cpp
     src/models/user.cpp
     src/models/student.cpp
     src/models/reservation.cpp

@@ -2,6 +2,7 @@
 
  namespace fs = std::filesystem;
  class AdminPanel {
+public:   
     void choose_csv_file(fs::path);
     void choose_csv_file_intractive();
     void display_all_meals();
